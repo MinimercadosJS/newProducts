@@ -65,7 +65,7 @@ const ImageInput = () => {
       })()}
       <input
         type="file"
-        accept='".png, .jpg, .jpeg"'
+        accept='image/*'
         capture="environment"
         id="barcode"
         onChange={UploadImage}
