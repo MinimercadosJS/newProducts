@@ -1,7 +1,7 @@
 import { ChangeEventHandler, useRef, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { CldImage } from "next-cloudinary";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoader } from "react-icons/lu";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { uploadImage } from "@/lib/cloudinary/actions";
 import { Product } from "@/model/products";
@@ -38,7 +38,7 @@ const ImageInput = () => {
         switch (imageState) {
           case "loading":
             return (
-              <LuLoader2 className="animate-spin text-4xl text-blue-500" />
+              <LuLoader className="animate-spin text-4xl text-blue-500" />
             );
 
           case "loaded":
