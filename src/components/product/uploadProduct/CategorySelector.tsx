@@ -1,0 +1,53 @@
+'use client'
+import { camelCaseToTitleCase } from '@/globalFunctions';
+import React, { useContext, useState } from 'react'
+import { StageContext } from './UploadProductForm';
+import { useFormContext } from 'react-hook-form';
+import { categories, Category, Product } from '@/model/products';
+
+const CategorySelector = ({ showAt }: { showAt: number }) => {
+  const [categorySelected, setCategorySelected] = useState<Category>();
+  const { stage, setStage } = useContext(StageContext);
+  const { register } = useFormContext<Product>()
+
+  const handleSubcategoryChange = () => {
+    stage === showAt && setStage((stage) => stage + 1)
+  }
+
+  return (
+    <>
+      {
+        stage >= showAt &&
+        <label >
+          <span className='text-sm font-semibold text-gray-600' >Categoría</span>
+          <select required autoFocus={stage === showAt}
+            {...register("category", { onChange: (e) => setCategorySelected(e.currentTarget.value as Category) })}>
+            <option value="" ></option>
+            { Object.keys(categories).map((category) => (
+              <option key={category} value={category}>
+                {camelCaseToTitleCase(category)}
+              </option>
+            ))}
+          </select>
+        </label >
+      }
+
+      {
+        categorySelected && stage >= showAt &&
+        <label >
+          <span className='text-sm font-semibold text-gray-600' >Sub categoría</span>
+          <select {...register("subcategory", { onChange: handleSubcategoryChange })} required autoFocus={stage === showAt}>
+            <option value="" ></option>
+            {categories[categorySelected].map((subcategory) => (
+              <option key={subcategory} value={subcategory}>
+                {camelCaseToTitleCase(subcategory)}
+              </option>
+            ))}
+          </select>
+        </label>
+      }
+    </>
+  );
+};
+
+export default CategorySelector
