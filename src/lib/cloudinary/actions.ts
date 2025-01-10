@@ -11,7 +11,7 @@ cloudinary.config({
 
 export async function uploadImage(formData: FormData, name: string) {
 
-    const image = formData.get('newProductImage') as File;
+    const image = formData.get('NewProductReportImage') as File;
     const arrayBuffer = await image.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
     
@@ -27,4 +27,20 @@ export async function uploadImage(formData: FormData, name: string) {
     }
     )
     return cloudinaryResponse;
+}
+
+export const destroyImage = async (public_id: string) => {
+
+    const cloudinaryResponse = await new Promise((resolve, reject) => {
+        cloudinary.uploader.destroy(public_id,{invalidate: true}, function (error, result) {
+            if (error) {
+                reject(error); console.log(error.message);
+                ; throw new Error(error.message);
+            };
+            resolve(result)
+        })
+    })
+
+    return cloudinaryResponse;
+
 }

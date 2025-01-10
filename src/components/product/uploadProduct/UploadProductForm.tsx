@@ -50,11 +50,11 @@ const UploadProductForm = () => {
               <StageContext.Provider value={{ stage, setStage }}>
                 <BarcodeInputs />
                 <ImageInput />  
-                <Input id="name" name="name" label='Nombre' showAt={1} required />
-                <BrandInput showAt={2} />
+                <Input id="name" name="name" label='Nombre' showAt={2} required />
+                <BrandInput showAt={3} />
                 {/* <Input id="description" name="description" label='Descripción' showAt={3} required /> */}
-                <Input id="measure" name="measure" label='Medida' showAt={3} required />
-                <CategorySelector showAt={4} />
+                <Input id="measure" name="measure" label='Medida' showAt={4} required />
+                <CategorySelector showAt={5} />
               </StageContext.Provider>
             </FormProvider>
             {formState.isValid && <button type='submit' className='submit-button'> Crear producto </button>}
