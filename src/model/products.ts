@@ -18,7 +18,7 @@ export const brands = [
     "Bimbo",
     "Grupo Familia",
     "Ramo"
-]as const;
+] as const;
 
 export const categories = {
     canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'matequillas', 'condimentos', 'otros'] as const,
@@ -45,13 +45,13 @@ export interface Product {
     description?: string;
     image: string;
     category: Category;
-    subcategory: SubCategory<Category>;
+    subcategory: string;
     checked?: boolean;
 }
 
 const subcategories = Object.values(categories).flat()
 
-export const productResolver = z.object({
+export const productSchema = z.object({
     barcode: z.string(),
     name: z.string(),
     measure: z.string(),
@@ -59,6 +59,9 @@ export const productResolver = z.object({
     description: z.string().optional(),
     image: z.string(),
     category: z.enum(Object.keys(categories) as [keyof typeof categories]),
-    subcategory: z.string().refine(val => subcategories.includes(val as SubCategory<any>), {message: "invalid subcategory"}),
+    subcategory: z.string().refine(val => subcategories.includes(val as SubCategory<any>), { message: "invalid subcategory" }),
     checked: z.boolean()
 })
+
+export const uploadProductSchema = productSchema.omit({ checked: true })
+export type UploadProduct = z.infer<typeof uploadProductSchema>

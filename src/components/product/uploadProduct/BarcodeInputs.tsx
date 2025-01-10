@@ -63,7 +63,7 @@ const AlreadyCreatedDialog = forwardRef<HTMLDialogElement, { barcode: string }>(
           <p className="text-blue-500">¿Deseas editarlo?</p>
           <div className="flex flex-row-reverse gap-5 text-lg font-medium *:rounded-full *:px-3">
             <Link
-              href={`/admin/edit-product/${barcode}`}
+              href={`/edit-product/${barcode}`}
               className="bg-blue-400 text-white"
             >
               Editar

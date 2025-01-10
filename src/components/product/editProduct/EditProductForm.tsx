@@ -8,11 +8,11 @@ import CategorySelector from './CategorySelector'
 import ImageInput from './ImageInput'
 // import { DevTool } from "@hookform/devtools";
 import { useState } from 'react'
-import { Product, productResolver } from '@/model/products'
+import { Product, productSchema } from '@/model/products'
 
 const EditProductForm = ({ product }: { product: Product }) => {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'submitted' | 'failed'>('idle')
-  const form = useForm({ resolver: zodResolver(productResolver), defaultValues: { ...product } })
+  const form = useForm({ resolver: zodResolver(productSchema), defaultValues: { ...product } })
   const { formState: { isValid, }, getValues, register } = form
 
   const handleEditProduct = async () => {
