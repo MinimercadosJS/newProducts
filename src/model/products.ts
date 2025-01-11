@@ -17,7 +17,9 @@ export const brands = [
     "Procter & Gamble",
     "Bimbo",
     "Grupo Familia",
-    "Ramo"
+    "Ramo",
+    "Frito lay",
+    "Quaker"
 ] as const;
 
 export const categories = {

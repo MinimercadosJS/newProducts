@@ -58,7 +58,7 @@ export async function getProductByBarcode(barcode: string) {
     try {
         await init()
 
-        const result = await products.findOne({ barcode: barcode })
+        const result = await products.findOne({ barcode: barcode },{projection: { _id: 0 }})
         return result
     } catch (error: any) {
         throw new Error(error)
@@ -67,6 +67,7 @@ export async function getProductByBarcode(barcode: string) {
 
 export async function editProduct(updatedProduct: Product) {
     const { barcode } = updatedProduct
+
     try {
         await init()
         const result = await products.updateOne({ barcode: barcode }, { $set: updatedProduct })

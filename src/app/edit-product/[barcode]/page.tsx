@@ -13,9 +13,9 @@ const updateProductByBarcode = async ({params}: {params:{barcode: string}}) => {
   const product = getProduct as Product
   
   return (
-    <div>
+    
       <EditProductForm product={product}/>
-    </div>
+    
   )
 }
 
