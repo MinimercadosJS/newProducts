@@ -17,6 +17,7 @@ const ImageInput = () => {
   const { register, getValues, setValue } = useFormContext<UploadProduct>();
   const { stage, setStage } = useContext(StageContext);
   const [imageId, setImageId] = useState<string>("");
+  const [withoutImage, setWithoutImage] = useState(false)
 
   const [imageState, setImageState] = useState<
     "idle" | "loading" | "loaded" | "failed"
@@ -50,6 +51,20 @@ const ImageInput = () => {
     }
   }, [stage]);
 
+const handleWithoutImage = () =>{
+  if (!withoutImage) {
+    setValue("image", "no-image")
+    setImageId("no-image")
+    setImageState("loaded")
+  } else{
+    setImageState("idle");
+    setImageId("");
+    setValue("image", "")
+  }
+
+  setWithoutImage(prev => !prev)
+  
+}
   return (
     <div className="image-input" onClick={() => inputRef.current?.click()}>
       {(() => {
@@ -73,6 +88,11 @@ const ImageInput = () => {
                   ref={inputRef}
                   disabled={stage < 1}
                 />
+                <label className="text-xs ">
+                  <input type="checkbox" className="" checked={withoutImage} onChange={handleWithoutImage} />
+                  <br />
+                  Sin imagen
+                </label>
               </div>
             );
           case "loading":
