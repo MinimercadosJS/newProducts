@@ -7,7 +7,7 @@ export const brands = [
     "Coca Cola",
     "Bavaria",
     "Postobon",
-    "Nestle",
+    "Nestlé",
     "Doria",
     "Quala",
     "Nutresa",
@@ -19,11 +19,19 @@ export const brands = [
     "Grupo Familia",
     "Ramo",
     "Frito lay",
-    "Quaker"
+    "Quaker",
+    "Mama Inés",
+    "Colombina",
+    "Natipan",
+    "Marinela",
+    "Super",
+    "El Caribe",
+    "Ron Viejo de Caldas",
+    "Las Caseritas"
 ] as const;
 
 export const categories = {
-    canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'matequillas', 'condimentos', 'otros'] as const,
+    canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'matequillas', 'condimentos', 'café', 'chocolates', 'otros'] as const,
     higienePersonal: ['crema dental', 'jabón', 'shampoo', 'desodorante', 'talco', 'toallas higiénicas', 'cepillo de dientes', 'papel higiénico'] as const,
     mecato: ['paquetes', 'helados', 'gomitas', 'chocolates', 'galletas', 'snacks', 'dulces', 'repostería','otros'] as const,
     licor: ['cerveza', 'ron', 'aguardiente', 'vino', 'whisky', 'tequila', 'vodka', 'otros'] as const,
