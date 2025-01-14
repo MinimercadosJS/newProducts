@@ -54,11 +54,16 @@ export async function getNotCheckedProducts() {
     }
 }
 
+export async function nextProductToCheck(current: string) {
+
+    return await products.findOne({ $and: [{ measure: { $not: { $type: "string" } }, barcode: { $ne: current } }] })
+}
+
 export async function getProductByBarcode(barcode: string) {
     try {
         await init()
 
-        const result = await products.findOne({ barcode: barcode },{projection: { _id: 0 }})
+        const result = await products.findOne({ barcode: barcode }, { projection: { _id: 0 } })
         return result
     } catch (error: any) {
         throw new Error(error)
