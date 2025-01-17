@@ -26,7 +26,8 @@ export async function init() {
 export async function uploadProduct(product: Product) {
     try {
         await init();
-        const res = await products.insertOne({ ...product, checked: false });
+        const searchString = `${product.name} ${product.measure} - ${product.brand}`.toLowerCase()
+        const res = await products.insertOne({ ...product, searchString, checked: false });
         revalidatePath('/')
         return res
     } catch (error: any) {

@@ -27,13 +27,16 @@ export const brands = [
     "Super",
     "El Caribe",
     "Ron Viejo de Caldas",
-    "Las Caseritas"
+    "Las Caseritas",
+    "Casa Luker",
+    "Corona",
+    "Zenú"
 ] as const;
 
 export const categories = {
     canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'matequillas', 'condimentos', 'café', 'chocolates', 'otros'] as const,
     higienePersonal: ['crema dental', 'jabón', 'shampoo', 'desodorante', 'talco', 'toallas higiénicas', 'cepillo de dientes', 'papel higiénico'] as const,
-    mecato: ['paquetes', 'helados', 'gomitas', 'chocolates', 'galletas', 'snacks', 'dulces', 'repostería','otros'] as const,
+    mecato: ['paquetes', 'helados', 'gomitas', 'chocolates', 'galletas', 'snacks', 'dulces', 'repostería', 'otros'] as const,
     licor: ['cerveza', 'ron', 'aguardiente', 'vino', 'whisky', 'tequila', 'vodka', 'otros'] as const,
     aseo: ['jabón en polvo', 'lavaloza', 'limpiadores', 'esponjas', 'detergente', 'cloro', 'suavizante', 'otros'] as const,
     bebidas: ['gaseosas', 'jugos', 'agua', 'té', 'café', 'leche', 'bebidas energéticas', 'otros'] as const,
@@ -52,6 +55,7 @@ export interface Product {
     name: string;
     measure: string;
     brand: Brand | string;
+    searchString: string;
     description?: string;
     image: string;
     category: Category;
