@@ -1,54 +1,14 @@
+import { brands } from '@/globalConsts';
 import { z } from 'zod'
 
-export const brands = [
-    "Alpina",
-    "Colanta",
-    "Pepsi",
-    "Coca Cola",
-    "Bavaria",
-    "Postobon",
-    "Nestlé",
-    "Doria",
-    "Quala",
-    "Nutresa",
-    "Mondelez",
-    "Unilever",
-    "Johnson & Johnson",
-    "Procter & Gamble",
-    "Bimbo",
-    "Grupo Familia",
-    "Ramo",
-    "Frito lay",
-    "Quaker",
-    "Mama Inés",
-    "Colombina",
-    "Natipan",
-    "Marinela",
-    "Super",
-    "El Caribe",
-    "Ron Viejo de Caldas",
-    "Las Caseritas",
-    "Casa Luker",
-    "Corona",
-    "Zenú"
-] as const;
 
-export const categories = {
-    canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'esparcibles', 'condimentos', 'café', 'chocolates','pulverizados', 'otros'] as const,
-    higienePersonal: ['crema dental', 'jabón', 'shampoo', 'desodorante', 'talco', 'toallas higiénicas', 'cepillo de dientes', 'papel higiénico'] as const,
-    mecato: ['paquetes', 'helados', 'gomitas', 'chocolates', 'galletas', 'snacks', 'dulces', 'repostería', 'otros'] as const,
-    licor: ['cerveza', 'ron', 'aguardiente', 'vino', 'whisky', 'tequila', 'vodka', 'otros'] as const,
-    aseo: ['jabón en polvo', 'lavaloza', 'limpiadores', 'esponjas', 'detergente', 'cloro', 'suavizante', 'otros'] as const,
-    bebidas: ['gaseosas', 'jugos', 'agua', 'té', 'café', 'leche', 'bebidas energéticas', 'otros'] as const,
-    mascotas: ['juguetes', 'alimento', 'accesorios', 'higiene', 'otros'] as const,
-    otra: ['no aplica'] as const
-};
+
+export const categories = ["canastaFamiliar", "higienePersonal", "mecato", "licor", "aseo", "bebidas", "mascotas", "otra"] as const;
 
 export type Brand = typeof brands[number];
 
-export type Category = keyof typeof categories;
+export type Category =  typeof categories[number];
 
-export type SubCategory<C extends Category> = typeof categories[C][number];
 
 export interface Product {
     barcode: string;
@@ -59,11 +19,9 @@ export interface Product {
     description?: string;
     image: string;
     category: Category;
-    subcategory: string;
+    tags: string[];
     checked?: boolean;
 }
-
-const subcategories = Object.values(categories).flat()
 
 export const productSchema = z.object({
     barcode: z.string(),
@@ -72,8 +30,8 @@ export const productSchema = z.object({
     brand: z.union([z.enum(brands), z.string()]),
     description: z.string().optional(),
     image: z.string(),
-    category: z.enum(Object.keys(categories) as [keyof typeof categories]),
-    subcategory: z.string().refine(val => subcategories.includes(val as SubCategory<any>), { message: "invalid subcategory" }),
+    category: z.enum(categories),
+    tags: z.array(z.string()),
     checked: z.boolean()
 })
 

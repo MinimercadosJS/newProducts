@@ -12,9 +12,9 @@ const ProductPage = async ({ params }: { params: { barcode: string } }) => {
     name,
     brand,
     category,
-    subcategory,
     measure,
     checked,
+    tags,
     description,
     image,
   } = product;

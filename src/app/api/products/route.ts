@@ -1,9 +1,10 @@
+import { brands } from "@/globalConsts";
 import { uploadProduct } from "@/lib/mongo/products";
-import { brands, categories, Product } from "@/model/products";
+import {  categories, Product } from "@/model/products";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod'
 
-const CategorySchema = z.enum(Object.keys(categories) as [keyof typeof categories]);
+const CategorySchema = z.enum(categories);
 
 const ProductSchema = z.object({
     barcode: z.string(),
@@ -13,7 +14,6 @@ const ProductSchema = z.object({
     description: z.string().optional(),
     image: z.string(),
     category: CategorySchema,
-    subcategory: z.string()
 });
 
 export async function POST(request: NextRequest) {

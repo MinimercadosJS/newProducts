@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, Controller } from "react-hook-form";
 import "../forms-styles.css";
 import { Product, UploadProduct, uploadProductSchema } from "@/model/products";
 import BarcodeInputs from "./BarcodeInputs";
@@ -10,6 +10,8 @@ import BrandInput from "./BrandInput";
 import CategorySelector from "./CategorySelector";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { uploadProduct } from "@/lib/mongo/products";
+import TagsInput from "./TagsInput";
+import { DevTool } from "@hookform/devtools";
 
 interface StageContextProps {
   stage: number;
@@ -28,9 +30,13 @@ const UploadProductForm = () => {
 
   const form = useForm<UploadProduct>({
     resolver: zodResolver(uploadProductSchema),
+    defaultValues: {
+      tags: []
+    }
   });
 
-  const { control, formState, getValues, reset, setFocus } = form;
+  const { control, handleSubmit, formState, getValues, reset, setFocus } = form;
+
   const handleUploadProduct = async () => {
     setFormStatus("submitting");
     const product = getValues();
@@ -63,7 +69,7 @@ const UploadProductForm = () => {
     default:
       return (
         <>
-          <form action={handleUploadProduct} id="uploadProductForm">
+          <form onSubmit={handleSubmit(handleUploadProduct)} id="uploadProductForm">
             <FormProvider {...form}>
               <StageContext.Provider value={{ stage, setStage }}>
                 <BarcodeInputs />
@@ -73,7 +79,7 @@ const UploadProductForm = () => {
                   name="name"
                   label="Nombre"
                   showAt={0}
-                  required
+                  
                 />
                 <BrandInput showAt={0} />
                 {/* <Input id="description" name="description" label='Descripción' showAt={3} required /> */}
@@ -82,21 +88,22 @@ const UploadProductForm = () => {
                   name="measure"
                   label="Medida"
                   showAt={0}
-                  required
+                  
                 />
                 <CategorySelector showAt={0} />
+                <Controller control={control} name="tags" render={({field})=> <TagsInput {...field}/>}/>
               </StageContext.Provider>
             </FormProvider>
-            {formState.isValid && (
-              <button type="submit" className="submit-button">
-                {" "}
-                Crear producto{" "}
+            {!formState.isValid && (
+              <button type="submit" className="submit-button" disabled={!formState.isValid}>
+                Crear product
               </button>
             )}
           </form>
           <button type="button" className="size-0 opacity-0 outline-none">
             void focus out of page
           </button>
+          <DevTool control={control} />
         </>
       );
   }
