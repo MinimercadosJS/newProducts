@@ -34,7 +34,7 @@ export const brands = [
 ] as const;
 
 export const categories = {
-    canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'matequillas', 'condimentos', 'café', 'chocolates', 'otros'] as const,
+    canastaFamiliar: ['parva', 'arepas', 'granos', 'lácteos', 'enlatados', 'aceites', 'esparcibles', 'condimentos', 'café', 'chocolates','pulverizados', 'otros'] as const,
     higienePersonal: ['crema dental', 'jabón', 'shampoo', 'desodorante', 'talco', 'toallas higiénicas', 'cepillo de dientes', 'papel higiénico'] as const,
     mecato: ['paquetes', 'helados', 'gomitas', 'chocolates', 'galletas', 'snacks', 'dulces', 'repostería', 'otros'] as const,
     licor: ['cerveza', 'ron', 'aguardiente', 'vino', 'whisky', 'tequila', 'vodka', 'otros'] as const,
