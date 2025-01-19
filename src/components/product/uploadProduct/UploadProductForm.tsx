@@ -94,7 +94,7 @@ const UploadProductForm = () => {
                 <Controller control={control} name="tags" render={({field})=> <TagsInput {...field}/>}/>
               </StageContext.Provider>
             </FormProvider>
-            {!formState.isValid && (
+            {formState.isValid && (
               <button type="submit" className="submit-button" disabled={!formState.isValid}>
                 Crear product
               </button>
