@@ -1,12 +1,16 @@
 const tags = [
   "lonchera",
   "parrilla",
-  "accesorios de celular",
   "piscina",
+  "farmacia",
+  "accesorios de celular",
   "fiesta",
   "temporada escolar",
   "navidad",
+  "halloween",
+  "regalos y detalles",
   "cuidado de prendas",
+  "+ 18"
 ];
 
 const brands = [
@@ -144,8 +148,8 @@ const subcategories = {
     //   'calzado', 
     //   'muebles', 
       'herramientas', 
-      'jardinería', 
-      'electrodomésticos', 
+      // 'jardinería', 
+      // 'electrodomésticos', 
       'deportes', 
       'otros'
     ] as const

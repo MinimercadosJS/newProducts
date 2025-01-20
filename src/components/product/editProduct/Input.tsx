@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Product } from "@/model/products";
 import { InputHTMLAttributes, KeyboardEventHandler } from "react";
 import { useFormContext } from "react-hook-form";
@@ -9,7 +10,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = ({ name, label, hidden, type = "text", ...props }: InputProps) => {
     const { register, formState: { errors }, getFieldState, trigger } = useFormContext<Product>();
-    const valid = getFieldState(name).isDirty && !getFieldState(name).invalid
+    const { isDirty, invalid } = getFieldState(name);
+    const valid = isDirty && !invalid;
+    
     
     const handleClickEnter: KeyboardEventHandler<HTMLInputElement> = (e) => {
         if (e.key != 'Enter') return;
@@ -27,7 +30,12 @@ const Input = ({ name, label, hidden, type = "text", ...props }: InputProps) => 
                         {...props}
                         {...register(name, { onBlur: () => trigger(name) })}
                         onKeyDown={handleClickEnter}
-                        className={`${errors[name] && "input-invalid"} ${valid && "input-valid"} input`}
+                        // ...
+                        className={clsx(
+                            "input",
+                            { "input-invalid": errors[name] },
+                            { "input-valid": valid }
+                        )}
                         autoComplete="off"
                     />
                     {errors[name] && <span className="absolute bottom-0 text-xs font-semibold text-red-500">{errors[name]?.message}</span>}

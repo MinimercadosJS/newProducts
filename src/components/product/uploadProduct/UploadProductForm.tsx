@@ -66,8 +66,6 @@ const UploadProductForm = () => {
                   id="name"
                   name="name"
                   label="Nombre"
-
-
                 />
                 <BrandInput  />
                 {/* <Input id="description" name="description" label='Descripción' showAt={3} required /> */}
@@ -84,9 +82,7 @@ const UploadProductForm = () => {
               </button>
             )}
           </form>
-          <button type="button" className="size-0 opacity-0 outline-none">
-            void focus out of page
-          </button>
+
           {/* <DevTool control={control} /> */}
         </>
       );

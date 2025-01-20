@@ -15,7 +15,7 @@ import { UploadProduct } from "@/model/products";
 const ImageInput = () => {
   const { register, getValues, setValue } = useFormContext<UploadProduct>();
   const [imageId, setImageId] = useState<string>("");
-  const [withoutImage, setWithoutImage] = useState(false)
+  const [withoutImage, setWithoutImage] = useState(false);
 
   const [imageState, setImageState] = useState<
     "idle" | "loading" | "loaded" | "failed"
@@ -41,44 +41,52 @@ const ImageInput = () => {
     setImageState("loaded");
   };
 
+  const handleWithoutImage = () => {
+    if (!withoutImage) {
+      setValue("image", "no-image");
+      setImageId("no-image");
+      setImageState("loaded");
+    } else {
+      setImageState("idle");
+      setImageId("");
+      setValue("image", "");
+    }
 
-const handleWithoutImage = () =>{
-  if (!withoutImage) {
-    setValue("image", "no-image")
-    setImageId("no-image")
-    setImageState("loaded")
-  } else{
-    setImageState("idle");
-    setImageId("");
-    setValue("image", "")
-  }
-
-  setWithoutImage(prev => !prev)
-  
-}
+    setWithoutImage((prev) => !prev);
+  };
   return (
-    <div className="image-input" onClick={() => inputRef.current?.click()}>
+    <div className="image-input">
       {(() => {
         switch (imageState) {
           case "idle":
             return (
-              <div className="text-5xl text-gray-500 text-center flex flex-col items-center gap-5">
-                <IoIosAddCircleOutline />
-                <span className="text-sm font-semibold">
-                  Añadir imagen del producto
-                </span>
-                <input
-                  type="file"
-                  accept='".png, .jpg, .jpeg"'
-                  capture="environment"
-                  id="barcode"
-                  onChange={UploadImage}
-                  hidden
-                  required
-                  ref={inputRef}
-                 />
+              <div
+                className="text-5xl text-gray-500 text-center flex flex-col items-center gap-5"
+                
+              >
+                <div className="flex flex-col items-center justify-center" onClick={() => inputRef.current?.click()}>
+                  <IoIosAddCircleOutline />
+                  <span className="text-sm font-semibold">
+                    Añadir imagen del producto
+                  </span>
+                  <input
+                    type="file"
+                    accept='".png, .jpg, .jpeg"'
+                    capture="environment"
+                    id="barcode"
+                    onChange={UploadImage}
+                    hidden
+                    required
+                    ref={inputRef}
+                  />
+                </div>
                 <label className="text-xs ">
-                  <input type="checkbox" className="" checked={withoutImage} onChange={handleWithoutImage} />
+                  <input
+                    type="checkbox"
+                    className=""
+                    checked={withoutImage}
+                    onChange={handleWithoutImage}
+                  />
                   <br />
                   Sin imagen
                 </label>
