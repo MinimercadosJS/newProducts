@@ -1,35 +1,57 @@
-'use client'
-import { camelCaseToTitleCase } from '@/globalFunctions';
-import React, { useContext, useState } from 'react'
-import { StageContext } from './UploadProductForm';
-import { useFormContext } from 'react-hook-form';
-import { categories, Category, Product } from '@/model/products';
+"use client";
+import { camelCaseToTitleCase } from "@/globalFunctions";
+import { Controller, useFormContext } from "react-hook-form";
+import { categories, Category, Product } from "@/model/products";
+import { subcategories } from "@/globalConsts";
+import { useEffect, useState } from "react";
+import TagsInput from "./TagsInput";
 
-const CategorySelector = ({ showAt }: { showAt: number }) => {
-  const { stage, setStage } = useContext(StageContext);
-  const { register } = useFormContext<Product>()
+const CategorySelector = () => {
+  const [category, setCategory] = useState<Category>("otra");
+  const { register, control } = useFormContext<Product>();
+
 
   return (
     <>
-      {
-        stage >= showAt &&
-        <label >
-          <span className='text-sm font-semibold text-gray-600' >Categoría</span>
-          <select required autoFocus={stage === showAt}
-            {...register("category")}>
-            <option value="" ></option>
-            { categories.map((category) => (
-              <option key={category} value={category}>
-                {camelCaseToTitleCase(category)}
+      <label>
+        <span className="text-sm font-semibold text-gray-600">Categoría</span>
+        <select
+          {...register("category", {
+            onChange: (event) => setCategory(event.target.value as Category),
+          })}
+        >
+          <option value=""></option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {camelCaseToTitleCase(category)}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span className="text-sm font-semibold text-gray-600">
+          Sub categoría
+        </span>
+        <select
+          {...register("subcategory", { required: true })}
+          disabled={!category}
+        >
+          <option value=""></option>
+          {category &&
+            subcategories[category]?.map((subcategory) => (
+              <option key={subcategory} value={subcategory}>
+                {camelCaseToTitleCase(subcategory)}
               </option>
             ))}
-          </select>
-        </label >
-      }
-
-     
+        </select>
+      </label>
+      <Controller
+        control={control}
+        name="tags"
+        render={({ field }) => <TagsInput category={category} {...field} />}
+      />
     </>
   );
 };
 
-export default CategorySelector
+export default CategorySelector;

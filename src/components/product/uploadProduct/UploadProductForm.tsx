@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import "../forms-styles.css";
 import { Product, UploadProduct, uploadProductSchema } from "@/model/products";
@@ -13,29 +13,18 @@ import { uploadProduct } from "@/lib/mongo/products";
 import TagsInput from "./TagsInput";
 import { DevTool } from "@hookform/devtools";
 
-interface StageContextProps {
-  stage: number;
-  setStage: React.Dispatch<React.SetStateAction<number>> | (() => void);
-}
-export const StageContext = createContext<StageContextProps>({
-  stage: 0,
-  setStage: () => {},
-});
 
 const UploadProductForm = () => {
-  const [stage, setStage] = useState(0);
   const [formStatus, setFormStatus] = useState<
     "idle" | "submitting" | "submitted" | "failed"
   >("idle");
 
   const form = useForm<UploadProduct>({
     resolver: zodResolver(uploadProductSchema),
-    defaultValues: {
-      tags: []
-    }
+    defaultValues: {tags: []}
   });
-
-  const { control, handleSubmit, formState, getValues, reset, setFocus } = form;
+  const { control, handleSubmit, formState, getValues, reset, setFocus , watch} = form;
+  const category = watch("category")
 
   const handleUploadProduct = async () => {
     setFormStatus("submitting");
@@ -51,11 +40,11 @@ const UploadProductForm = () => {
     if (!result) return setFormStatus("failed");
     setFocus("barcode");
     setFormStatus("submitted");
-    setStage(0);
     reset();
     alert("Producto creado con éxito!");
     return;
   };
+
   switch (formStatus) {
     case "submitting":
       return <div>Cargando...</div>;
@@ -69,41 +58,36 @@ const UploadProductForm = () => {
     default:
       return (
         <>
-          <form onSubmit={handleSubmit(handleUploadProduct)} id="uploadProductForm">
+          <form onSubmit={handleUploadProduct } id="uploadProductForm">
             <FormProvider {...form}>
-              <StageContext.Provider value={{ stage, setStage }}>
                 <BarcodeInputs />
                 <ImageInput />
                 <Input
                   id="name"
                   name="name"
                   label="Nombre"
-                  showAt={0}
-                  
+
+
                 />
-                <BrandInput showAt={0} />
+                <BrandInput  />
                 {/* <Input id="description" name="description" label='Descripción' showAt={3} required /> */}
                 <Input
                   id="measure"
                   name="measure"
                   label="Medida"
-                  showAt={0}
-                  
                 />
-                <CategorySelector showAt={0} />
-                <Controller control={control} name="tags" render={({field})=> <TagsInput {...field}/>}/>
-              </StageContext.Provider>
+                <CategorySelector  />
             </FormProvider>
             {formState.isValid && (
               <button type="submit" className="submit-button" disabled={!formState.isValid}>
-                Crear product
+                Crear producto
               </button>
             )}
           </form>
           <button type="button" className="size-0 opacity-0 outline-none">
             void focus out of page
           </button>
-          <DevTool control={control} />
+          {/* <DevTool control={control} /> */}
         </>
       );
   }

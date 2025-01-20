@@ -3,20 +3,19 @@ import {
   forwardRef,
   KeyboardEvent,
   RefObject,
-  useContext,
   useRef,
+  useState,
 } from "react";
-import { StageContext } from "./UploadProductForm";
 import Input from "./Input";
 import Link from "next/link";
 import { getProductByBarcode } from "@/lib/mongo/products";
 import { Product } from "@/model/products";
 
 const BarcodeInputs = () => {
+  const [disabled, setDisabled] = useState(false)
   const dialog = useRef<HTMLDialogElement>(null);
-  const { trigger, getFieldState, getValues, setError } =
+  const { trigger, getValues, setError } =
     useFormContext<Product>();
-  const { stage, setStage } = useContext(StageContext);
 
   const confirmBarcode = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" || e.key === "Enter") {
@@ -31,7 +30,7 @@ const BarcodeInputs = () => {
         });
         return;
       }
-      setStage(1);
+      setDisabled(true);
     }
   };
 
@@ -41,10 +40,9 @@ const BarcodeInputs = () => {
         name="barcode"
         label="Código de barras"
         type="number"
-        disabled={stage > 0}
-        showAt={0}
         autoFocus
         onKeyDownCapture={confirmBarcode}
+        disabled={disabled}
       />
       <AlreadyCreatedDialog ref={dialog} barcode={getValues("barcode")} />
     </>

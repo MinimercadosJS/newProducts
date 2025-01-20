@@ -1,51 +1,73 @@
 import { useFormContext } from "react-hook-form";
-import { InputHTMLAttributes, KeyboardEventHandler, useContext } from "react";
-import { StageContext } from "./UploadProductForm";
+import { InputHTMLAttributes, KeyboardEventHandler } from "react";
 import { Product } from "@/model/products";
+import clsx from "clsx";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    name: keyof Product;
-    label: string;
-    showAt: number;
+  name: keyof Product;
+  label: string;
 }
 
-const Input = ({ name, label, type = "text", onChange, hidden, showAt, ...props }: InputProps) => {
-    const { register, formState: { errors }, getFieldState, trigger } = useFormContext<Product>();
-    const valid = getFieldState(name).isDirty && !getFieldState(name).invalid
-    const { stage, setStage } = useContext(StageContext)
+const Input = ({
+  name,
+  label,
+  type = "text",
+  onChange,
+  hidden,
+  ...props
+}: InputProps) => {
+  const {
+    register,
+    formState: { errors },
+    getFieldState,
+    trigger,
+  } = useFormContext<Product>();
 
-    const handleClickEnter: KeyboardEventHandler<HTMLInputElement> = (e) => {
-        if (e.key != 'Enter') return;
-        e.currentTarget.blur();
-    }
+  // Estado de validación del campo
+  const fieldState = getFieldState(name);
+  const isValid = fieldState.isDirty && !fieldState.invalid;
 
-    const onBlur = async () => {
-        await trigger(name);
-        if (!(stage === showAt) || stage === 0 || getFieldState(name).invalid) return;
-        setStage((stage) => stage + 1)
-    }
-    
-    return (
-        <> 
-            {
-                !hidden && stage >= showAt &&
-                <div className="input-group pb-4 relative flex flex-col h-min">
-                    <label htmlFor={name} className='text-sm font-semibold text-gray-600'>{label}</label>
-                    <input
-                        id={name}
-                        type={type}
-                        {...props}
-                        {...register(name, { onBlur: onBlur, onChange: onChange })}
-                        onKeyDown={handleClickEnter}
-                        autoFocus={stage === showAt}
-                        className={`${errors[name] && "input-invalid"} ${valid && "input-valid"} input`}
-                        autoComplete="off"
-                    />
-                    {errors[name] && <span className="absolute bottom-0 text-xs font-semibold text-red-500">{errors[name]?.message}</span>}
-                </div>
-            }
-        </>
-    );
+  // Manejo del evento Enter
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === "Enter") e.currentTarget.blur();
+  };
+
+  // Validar al salir del input
+  const handleBlur = () => {
+    trigger(name);
+  };
+
+  // No renderizar si está oculto
+  if (hidden) return null;
+
+  return (
+    <div className="input-group pb-4 relative flex flex-col h-min">
+      <label htmlFor={name} className="text-sm font-semibold text-gray-600">
+        {label}
+      </label>
+      <input
+        id={name}
+        type={type}
+        {...props}
+        {...register(name, {
+          onBlur: handleBlur,
+          onChange, 
+        })}
+        onKeyDown={handleKeyDown}
+        className={clsx(
+          "input",
+          errors[name] && "input-invalid",
+          isValid && "input-valid"
+        )}
+        autoComplete="off"
+      />
+      {errors[name] && (
+        <span className="absolute bottom-0 text-xs font-semibold text-red-500">
+          {errors[name]?.message?.toString() || "Error en el campo"}
+        </span>
+      )}
+    </div>
+  );
 };
 
 export default Input;

@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import { useFormContext } from "react-hook-form";
-import { StageContext } from "./UploadProductForm";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { uploadImage } from "@/lib/cloudinary/actions";
 import { CldImage } from "next-cloudinary";
@@ -15,7 +14,6 @@ import { UploadProduct } from "@/model/products";
 
 const ImageInput = () => {
   const { register, getValues, setValue } = useFormContext<UploadProduct>();
-  const { stage, setStage } = useContext(StageContext);
   const [imageId, setImageId] = useState<string>("");
   const [withoutImage, setWithoutImage] = useState(false)
 
@@ -38,18 +36,11 @@ const ImageInput = () => {
     );
 
     if (!cloudinaryData.public_id) return;
-    stage === 1 && setStage(2);
     setImageId(cloudinaryData.public_id);
     setValue("image", cloudinaryData.public_id);
     setImageState("loaded");
   };
 
-  useEffect(() => {
-    if (stage === 0) {
-      setImageState("idle");
-      setImageId("");
-    }
-  }, [stage]);
 
 const handleWithoutImage = () =>{
   if (!withoutImage) {
@@ -84,10 +75,8 @@ const handleWithoutImage = () =>{
                   onChange={UploadImage}
                   hidden
                   required
-                  autoFocus={stage === 1}
                   ref={inputRef}
-                  disabled={stage < 1}
-                />
+                 />
                 <label className="text-xs ">
                   <input type="checkbox" className="" checked={withoutImage} onChange={handleWithoutImage} />
                   <br />
