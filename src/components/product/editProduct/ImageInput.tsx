@@ -21,14 +21,14 @@ const ImageInput = () => {
     if (!file) return;
     setImageState("loading");
     const formData = new FormData();
-    formData.append("newProductImage", file);
+    formData.append("NewProductReportImage", file);
 
     const cloudinaryData: any = await uploadImage(
       formData,
       getValues("barcode").toString(),
     );
 
-    if (!cloudinaryData.public_id) return;
+    if (!cloudinaryData.public_id) return setImageState("failed");
     setValue("image", cloudinaryData.public_id);
     setImageState("loaded");
   };

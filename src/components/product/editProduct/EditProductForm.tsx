@@ -23,7 +23,6 @@ const EditProductForm = ({ product }: { product: Product }) => {
   const {
     formState: { isValid },
     getValues,
-    register,
     handleSubmit,
   } = form;
   const router = useRouter();

@@ -56,8 +56,13 @@ export async function getNotCheckedProducts() {
 }
 
 export async function nextProductToCheck(current: string) {
+    try {
+        await init()
+        return await products.findOne({$and:[{barcode: {$ne: current}},{image: "no-image"}] })
 
-    return await products.findOne({ $and: [{ measure: { $not: { $type: "string" } }, barcode: { $ne: current } }] })
+    } catch (error: any) {
+        throw new Error(error.message)
+    }
 }
 
 export async function getProductByBarcode(barcode: string) {

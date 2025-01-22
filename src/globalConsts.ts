@@ -14,145 +14,146 @@ const tags = [
 ];
 
 const brands = [
-    "Alpina",
-    "Colanta",
-    "Pepsi",
-    "Coca Cola",
-    "Bavaria",
-    "Postobon",
-    "Nestlé",
-    "Doria",
-    "Quala",
-    "Nutresa",
-    "Mondelez",
-    "Unilever",
-    "Johnson & Johnson",
-    "Procter & Gamble",
-    "Bimbo",
-    "Grupo Familia",
-    "Ramo",
-    "Frito lay",
-    "Quaker",
-    "Mama Inés",
-    "Colombina",
-    "Natipan",
-    "Marinela",
-    "Super",
-    "El Caribe",
-    "Ron Viejo de Caldas",
-    "Las Caseritas",
-    "Casa Luker",
-    "Corona",
-    "Zenú",
-    "Colgate-Palmolive"
+  "Alpina",
+  "Colanta",
+  "Pepsi",
+  "Coca Cola",
+  "Bavaria",
+  "Postobon",
+  "Nestlé",
+  "Doria",
+  "Quala",
+  "Nutresa",
+  "Mondelez",
+  "Unilever",
+  "Johnson & Johnson",
+  "Procter & Gamble",
+  "Bimbo",
+  "Grupo Familia",
+  "Ramo",
+  "Frito lay",
+  "Quaker",
+  "Mama Inés",
+  "Colombina",
+  "Natipan",
+  "Marinela",
+  "Super",
+  "El Caribe",
+  "Ron Viejo de Caldas",
+  "Las Caseritas",
+  "Casa Luker",
+  "Corona",
+  "Zenú",
+  "Colgate-Palmolive",
+  "Kellogg's"
 ] as const;
 
 const subcategories = {
-    canastaFamiliar: [
-      'parva', 
-      'arepas', 
-      'granos', 
-      'lácteos', 
-      'enlatados', 
-      'aceites', 
-      'esparcibles', 
-      'condimentos', 
-      'café', 
-      'chocolates', 
-      'pulverizados', 
-      'panadería', 
-      'tortillas', 
-      'frutas y verduras', 
-      'proteínas', 
-      'otros'
-    ] as const,
-    
-    higienePersonal: [
-      'crema dental', 
-      'jabón', 
-      'shampoo y acondicionador', 
-      'desodorante', 
-      'toallas higiénicas', 
-      'cepillo de dientes', 
-      'papel higiénico', 
-      'afeitado y rasuradoras', 
-      'cuidado bucal', // Incluye enjuague bucal e hilo dental
-      'cuidado del cabello', // Incluye gel, cera y lociones
-      'otros'
-    ] as const,
-    
-    mecato: [
-      'paquetes', 
-      'helados', 
-      'gomitas', 
-      'chocolates', 
-      'galletas', 
-      'snacks', 
-      'dulces', 
-      'repostería', 
-      'mani y nueces', 
-      'bocadillos típicos', 
-      'otros'
-    ] as const,
-    
-    licor: [
-      'cerveza', 
-      'ron', 
-      'aguardiente', 
-      'vino', 
-      'whisky', 
-      'tequila', 
-      'vodka', 
-      'champaña', 
-      'otros'
-    ] as const,
-    
-    aseo: [
-      'productos de limpieza', // Incluye jabones, lavaloza, cloro, detergente, desinfectantes, etc.
-      'utensilios de limpieza', // Incluye trapeadores, escobas, recogedores, guantes, esponjas
-      'ambientadores', 
-      'bolsas de basura', 
-      'aseo para mascotas', // Incluye champús, cepillos, productos antipulgas
-      'otros'
-    ] as const,
-    
-    bebidas: [
-      'gaseosas', 
-      'jugos', 
-      'agua', 
-      'té', 
-      'café', 
-      'leche', 
-      'batidos y malteadas', 
-      'energéticas e hidratantes', 
-      'otros'
-    ] as const,
-    
-    mascotas: [
-      'juguetes', 
-      'alimento', 
-      'accesorios', 
-      'camas y transportadoras', 
-      'comedores y bebederos', 
-      'ropa para mascotas', 
-      'otros'
-    ] as const,
-    
-    otra: [
-      'tecnología', 
+  canastaFamiliar: [
+    'parva',
+    'arepas',
+    'granos',
+    'lácteos',
+    'enlatados',
+    'aceites',
+    'esparcibles',
+    'condimentos',
+    'café',
+    'chocolates',
+    'pulverizados',
+    'panadería',
+    'tortillas',
+    'frutas y verduras',
+    'proteínas',
+    'otros'
+  ] as const,
+
+  higienePersonal: [
+    'crema dental',
+    'jabón',
+    'shampoo y acondicionador',
+    'desodorante',
+    'toallas higiénicas',
+    'cepillo de dientes',
+    'papel higiénico',
+    'afeitado y rasuradoras',
+    'cuidado bucal', // Incluye enjuague bucal e hilo dental
+    'cuidado del cabello', // Incluye gel, cera y lociones
+    'otros'
+  ] as const,
+
+  mecato: [
+    'paquetes',
+    'helados',
+    'gomitas',
+    'chocolates',
+    'galletas',
+    'snacks',
+    'dulces',
+    'repostería',
+    'mani y nueces',
+    'bocadillos típicos',
+    'otros'
+  ] as const,
+
+  licor: [
+    'cerveza',
+    'ron',
+    'aguardiente',
+    'vino',
+    'whisky',
+    'tequila',
+    'vodka',
+    'champaña',
+    'otros'
+  ] as const,
+
+  aseo: [
+    'productos de limpieza', // Incluye jabones, lavaloza, cloro, detergente, desinfectantes, etc.
+    'utensilios de limpieza', // Incluye trapeadores, escobas, recogedores, guantes, esponjas
+    'ambientadores',
+    'bolsas de basura',
+    'aseo para mascotas', // Incluye champús, cepillos, productos antipulgas
+    'otros'
+  ] as const,
+
+  bebidas: [
+    'gaseosas',
+    'jugos',
+    'agua',
+    'té',
+    'café',
+    'leche',
+    'batidos y malteadas',
+    'energéticas e hidratantes',
+    'otros'
+  ] as const,
+
+  mascotas: [
+    'juguetes',
+    'alimento',
+    'accesorios',
+    'camas y transportadoras',
+    'comedores y bebederos',
+    'ropa para mascotas',
+    'otros'
+  ] as const,
+
+  otra: [
+    'tecnología',
     //   'libros', 
-      'papelería', 
+    'papelería',
     //   'juguetes', 
-      'decoración', 
+    'decoración',
     //   'ropa y accesorios', 
     //   'calzado', 
     //   'muebles', 
-      'herramientas', 
-      // 'jardinería', 
-      // 'electrodomésticos', 
-      'deportes', 
-      'otros'
-    ] as const
-  };
-  
+    'herramientas',
+    // 'jardinería', 
+    // 'electrodomésticos', 
+    'deportes',
+    'otros'
+  ] as const
+};
+
 export { tags, brands, subcategories }
