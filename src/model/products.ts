@@ -34,7 +34,7 @@ export const productSchema = z.object({
   image: z.string().min(1, 'La imagen es obligatoria'), // Rechaza valores vacíos
   category: z.enum(categories), // Esto ya rechaza valores no válidos por el enum
   subcategory: z.string().min(1, 'La subcategoría es obligatoria'), // Rechaza valores vacíos
-  tags: z.array(z.string().min(1, 'Cada tag debe ser no vacío')).min(1, 'Debe incluir al menos un tag'), // Rechaza array vacío
+  tags: z.array(z.string().min(1, 'Cada tag debe ser no vacío')).optional(), // Rechaza array vacío
   checked: z.boolean(), // Asume que checked será verdadero o falso, no vacío
 });
 

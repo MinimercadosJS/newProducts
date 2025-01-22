@@ -32,6 +32,7 @@ const UploadProductForm = () => {
 
     const body: Product = {
       ...product,
+      tags: product.tags ||  [],
       searchString: `${product.name} ${product.measure} - ${product.brand}`.toLowerCase(),
       checked: false
     };
