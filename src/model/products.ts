@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 
 
-export const categories = ["canastaFamiliar", "higienePersonal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutasYVerduras", "mascotas", "otra"] as const;
+export const categories = ["canasta familiar", "higiene personal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutas y verduras", "mascotas", "otra"] as const;
 
 export type Brand = typeof brands[number];
 

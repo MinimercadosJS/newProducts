@@ -49,7 +49,7 @@ const TagsInput = ({ value = [], category = "otra", onChange }: Props) => {
               {tag}
             </option>
           ))}
-          {subcategories[category].map((tag) => (
+          {subcategories[category]?.map((tag) => (
             <option key={tag} value={tag}>
               {tag}
             </option>

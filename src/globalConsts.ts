@@ -1,3 +1,5 @@
+import { Category } from "./model/products";
+
 const tags = [
   "lonchera",
   "comida rápida",
@@ -52,8 +54,8 @@ const brands = [
   "Maggi"
 ] as const;
 
-const subcategories = {
-  canastaFamiliar: [
+const subcategories: { [K in Category]?: readonly string[]; } = {
+  "canasta familiar": [
     'parva',
     'arepas',
     'granos',
@@ -71,14 +73,14 @@ const subcategories = {
     'proteínas',
     'otros'
   ] as const,
-   
-  cárnicos: [
+
+  "cárnicos": [
     "carnes rojas",
     "carnes blancas",
     "embutidos",
     "otros"
   ],
-  frutasYVerduras:[
+  "frutas y verduras": [
     'frutas',
     'verduras',
     'legumbres',
@@ -86,7 +88,7 @@ const subcategories = {
     'refrigeradas',
     'otros'
   ],
-  higienePersonal: [
+  "higiene personal": [
     'crema dental',
     'jabón',
     'shampoo y acondicionador',
@@ -100,7 +102,7 @@ const subcategories = {
     'otros'
   ] as const,
 
-  mecato: [
+  "mecato": [
     'paquetes',
     'helados',
     'gomitas',
@@ -114,7 +116,7 @@ const subcategories = {
     'otros'
   ] as const,
 
-  licor: [
+  "licor": [
     'cerveza',
     'ron',
     'aguardiente',
@@ -126,7 +128,7 @@ const subcategories = {
     'otros'
   ] as const,
 
-  aseo: [
+  "aseo": [
     'productos de limpieza', // Incluye jabones, lavaloza, cloro, detergente, desinfectantes, etc.
     'utensilios de limpieza', // Incluye trapeadores, escobas, recogedores, guantes, esponjas
     'ambientadores',
@@ -135,7 +137,7 @@ const subcategories = {
     'otros'
   ] as const,
 
-  bebidas: [
+  "bebidas": [
     'gaseosas',
     'jugos',
     'agua',
@@ -147,7 +149,7 @@ const subcategories = {
     'otros'
   ] as const,
 
-  mascotas: [
+  "mascotas": [
     'juguetes',
     'alimento',
     'accesorios',
@@ -157,7 +159,7 @@ const subcategories = {
     'otros'
   ] as const,
 
-  otra: [
+  "otra": [
     'tecnología',
     //   'libros', 
     'papelería',
