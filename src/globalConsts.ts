@@ -75,7 +75,7 @@ const subcategories = {
   cárnicos: [
     "carnes rojas",
     "carnes blancas",
-    "preparación rápida",
+    "embutidos",
     "otros"
   ],
   frutasYVerduras:[
