@@ -154,6 +154,7 @@ const subcategories = {
     'tecnología',
     //   'libros', 
     'papelería',
+    'farmacia',
     //   'juguetes', 
     'decoración',
     //   'ropa y accesorios', 
