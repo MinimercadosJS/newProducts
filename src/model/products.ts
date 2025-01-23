@@ -3,25 +3,25 @@ import { z } from 'zod'
 
 
 
-export const categories = ["canastaFamiliar", "higienePersonal", "mecato", "licor", "aseo", "bebidas","congelados", "mascotas", "otra"] as const;
+export const categories = ["canastaFamiliar", "higienePersonal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutasYVerduras", "mascotas", "otra"] as const;
 
 export type Brand = typeof brands[number];
 
-export type Category =  typeof categories[number];
+export type Category = typeof categories[number];
 
 
 export interface Product {
-    barcode: string;
-    name: string;
-    measure: string;
-    brand: Brand | string;
-    searchString: string;
-    description?: string;
-    image: string;
-    category: Category;
-    subcategory: string;
-    tags: string[];
-    checked?: boolean;
+  barcode: string;
+  name: string;
+  measure: string;
+  brand: Brand | string;
+  searchString: string;
+  description?: string;
+  image: string;
+  category: Category;
+  subcategory: string;
+  tags: string[];
+  checked?: boolean;
 }
 
 

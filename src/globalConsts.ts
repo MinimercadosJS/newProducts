@@ -1,5 +1,6 @@
 const tags = [
   "lonchera",
+  "comida rápida",
   "parrilla",
   "piscina",
   "farmacia",
@@ -13,7 +14,6 @@ const tags = [
   "cuidado de prendas",
   "+ 18"
 ];
-
 const brands = [
   "Alpina",
   "Colanta",
@@ -71,14 +71,21 @@ const subcategories = {
     'proteínas',
     'otros'
   ] as const,
-  congelados: [
+   
+  cárnicos: [
     "carnes rojas",
     "carnes blancas",
-    "pulpas",
     "preparación rápida",
     "otros"
   ],
-
+  frutasYVerduras:[
+    'frutas',
+    'verduras',
+    'legumbres',
+    'frutas secos',
+    'refrigeradas',
+    'otros'
+  ],
   higienePersonal: [
     'crema dental',
     'jabón',
