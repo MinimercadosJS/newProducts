@@ -3,6 +3,7 @@ const tags = [
   "parrilla",
   "piscina",
   "farmacia",
+  "deportes",
   "accesorios de celular",
   "fiesta",
   "temporada escolar",
@@ -45,7 +46,10 @@ const brands = [
   "Corona",
   "Zenú",
   "Colgate-Palmolive",
-  "Kellogg's"
+  "Kellogg's",
+  "Yupi",
+  "Master Chips",
+  "Maggi"
 ] as const;
 
 const subcategories = {
@@ -67,6 +71,13 @@ const subcategories = {
     'proteínas',
     'otros'
   ] as const,
+  congelados: [
+    "carnes rojas",
+    "carnes blancas",
+    "pulpas",
+    "preparación rápida",
+    "otros"
+  ],
 
   higienePersonal: [
     'crema dental',
@@ -151,6 +162,7 @@ const subcategories = {
     'herramientas',
     // 'jardinería', 
     // 'electrodomésticos', 
+    'desechables',
     'deportes',
     'otros'
   ] as const
