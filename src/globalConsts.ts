@@ -54,6 +54,8 @@ const brands = [
   "Maggi"
 ] as const;
 
+const categories = ["canasta familiar", "higiene personal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutas y verduras", "mascotas", "otra"] as const;
+
 const subcategories: { [K in Category]?: readonly string[]; } = {
   "canasta familiar": [
     'parva',
@@ -67,10 +69,6 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
     'café',
     'chocolates',
     'pulverizados',
-    'panadería',
-    'tortillas',
-    'frutas y verduras',
-    'proteínas',
     'otros'
   ] as const,
 
@@ -166,6 +164,7 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
     'farmacia',
     //   'juguetes', 
     'decoración',
+    'iluminación',
     //   'ropa y accesorios', 
     //   'calzado', 
     //   'muebles', 
@@ -178,4 +177,4 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
   ] as const
 };
 
-export { tags, brands, subcategories }
+export { tags, brands, subcategories, categories }

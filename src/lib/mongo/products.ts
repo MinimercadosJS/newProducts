@@ -35,16 +35,32 @@ export async function uploadProduct(product: Product) {
     }
 }
 
+export async function getProductsWithTag(tag: string) {
+    try {
+        await init();
+        return products.find({ tags: { $in: [tag] } }).toArray()
+    } catch (error: any) {
+        throw new Error(error.message)
+    }
+}
 export async function getNoImageProducts() {
     try {
         await init();
-        const res = await products.find({ image: "" }).toArray();
+        const res = await products.find({ image: "no-image" }).toArray();
         return res
     } catch (error: any) {
         throw new Error(error.message)
     }
 }
-
+export async function getAllTags() {
+    try {
+        await init()
+        const res = await products.distinct('tags')
+        return res
+    } catch (error: any) {
+        throw new Error(error.message)
+    }
+}
 export async function getNotCheckedProducts() {
     try {
         await init();
@@ -58,7 +74,7 @@ export async function getNotCheckedProducts() {
 export async function nextProductToCheck(current: string) {
     try {
         await init()
-        return await products.findOne({$and:[{barcode: {$ne: current}},{image: "no-image"}] })
+        return await products.findOne({ $and: [{ barcode: { $ne: current } }, { image: "no-image" }] })
 
     } catch (error: any) {
         throw new Error(error.message)

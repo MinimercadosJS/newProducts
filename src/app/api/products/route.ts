@@ -1,6 +1,5 @@
-import { brands } from "@/globalConsts";
+import { brands, categories } from "@/globalConsts";
 import { uploadProduct } from "@/lib/mongo/products";
-import {  categories, Product } from "@/model/products";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod'
 

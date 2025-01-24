@@ -1,9 +1,8 @@
-import { brands } from '@/globalConsts';
+import { brands, categories } from '@/globalConsts';
 import { z } from 'zod'
 
 
 
-export const categories = ["canasta familiar", "higiene personal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutas y verduras", "mascotas", "otra"] as const;
 
 export type Brand = typeof brands[number];
 

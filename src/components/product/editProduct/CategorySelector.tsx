@@ -1,10 +1,10 @@
 "use client";
 import { Controller, useFormContext } from "react-hook-form";
-import { categories, Category, Product } from "@/model/products";
+import {  Category, Product } from "@/model/products";
 import { camelCaseToTitleCase } from "@/globalFunctions";
 import { useEffect, useState } from "react";
-import { subcategories } from "@/globalConsts";
 import TagsInput from "../uploadProduct/TagsInput";
+import { categories } from "@/globalConsts";
 
 const CategorySelector = () => {
   const { register, getValues, control } = useFormContext<Product>();
