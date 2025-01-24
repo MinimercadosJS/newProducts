@@ -26,7 +26,6 @@ const brands = [
   "Nestlé",
   "Doria",
   "Quala",
-  "Nutresa",
   "Mondelez",
   "Unilever",
   "Johnson & Johnson",
@@ -76,6 +75,7 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
     "carnes rojas",
     "carnes blancas",
     "embutidos",
+    "procesados",
     "otros"
   ],
   "frutas y verduras": [
@@ -138,12 +138,9 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
   "bebidas": [
     'gaseosas',
     'jugos',
-    'agua',
-    'té',
-    'café',
-    'leche',
     'batidos y malteadas',
-    'energéticas e hidratantes',
+    'energéticas', 
+    'hidratantes',
     'otros'
   ] as const,
 
