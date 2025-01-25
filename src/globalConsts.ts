@@ -1,3 +1,4 @@
+import { FruverCategory } from "./model/fruverProducts";
 import { Category } from "./model/products";
 
 const tags = [
@@ -55,7 +56,7 @@ const brands = [
 
 const categories = ["canasta familiar", "higiene personal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutas y verduras", "mascotas", "otra"] as const;
 
-const subcategories: { [K in Category]?: readonly string[]; } = {
+const subcategories: { [K in Category]: readonly string[]; } = {
   "canasta familiar": [
     'parva',
     'arepas',
@@ -139,7 +140,7 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
     'gaseosas',
     'jugos',
     'batidos y malteadas',
-    'energéticas', 
+    'energéticas',
     'hidratantes',
     'otros'
   ] as const,
@@ -174,4 +175,21 @@ const subcategories: { [K in Category]?: readonly string[]; } = {
   ] as const
 };
 
-export { tags, brands, subcategories, categories }
+const fruverCategories = ["frutas", "verduras y hortalizas", "hierbas aromáticas y especias", "legumbres", "frutos secos y semillas", "otros"] as const;
+
+const fruverSubcategories: { [K in FruverCategory]?: readonly string[] } = {
+  "frutas": [
+    "tropicales",
+    "cítricas",
+    "de estación",
+    "exóticas"
+  ],
+  "verduras y hortalizas": [
+    "verduras de hoja",
+    "raíces y tubérculos",
+    "hortalizas de fruto",
+    "crucíferas"
+  ]
+}
+
+export { tags, brands, subcategories, categories, fruverCategories, fruverSubcategories }

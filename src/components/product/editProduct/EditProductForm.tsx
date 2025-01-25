@@ -1,11 +1,11 @@
 "use client";
-import "./edit-product-styles.css";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "./Input";
 import BrandInput from "./BrandInput";
 import CategorySelector from "./CategorySelector";
 import ImageInput from "./ImageInput";
+import "../../forms-styles.css";
 // import { DevTool } from "@hookform/devtools";
 import { useState } from "react";
 import { Product, productSchema } from "@/model/products";
@@ -36,11 +36,11 @@ const EditProductForm = ({ product }: { product: Product }) => {
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
   
-    router.push(`/edit-product/${next?.barcode}`)
+    router.back()
   };
 
   return (
-    <form id="uploadProductForm" onSubmit={handleSubmit(handleEditProduct)}>
+    <form className="form" onSubmit={handleSubmit(handleEditProduct)}>
       <FormProvider {...form}>
         <Input name="name" label="Nombre" />
         <BrandInput />

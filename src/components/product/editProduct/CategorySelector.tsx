@@ -1,19 +1,19 @@
 "use client";
 import { Controller, useFormContext } from "react-hook-form";
-import {  Category, Product } from "@/model/products";
+import { Category, Product } from "@/model/products";
 import { camelCaseToTitleCase } from "@/globalFunctions";
 import { useEffect, useState } from "react";
 import TagsInput from "../uploadProduct/TagsInput";
-import { categories } from "@/globalConsts";
+import { categories, subcategories } from "@/globalConsts";
 
 const CategorySelector = () => {
-  const { register, getValues, control } = useFormContext<Product>();
+  const { register, getValues, control, watch } = useFormContext<Product>();
   const [category, setCategory] = useState<Category>("otra");
+  const subcategory = watch("subcategory");
   useEffect(() => {
-    setCategory(getValues("category"))
-    
-  }, [])
-  
+    setCategory(getValues("category"));
+  }, []);
+
   return (
     <>
       <label>
@@ -21,7 +21,7 @@ const CategorySelector = () => {
         <select
           required
           {...register("category", {
-            onChange: (event) => setCategory(event.target.value as Category)
+            onChange: (event) => setCategory(event.target.value as Category),
           })}
         >
           <option value=""></option>
@@ -32,23 +32,21 @@ const CategorySelector = () => {
           ))}
         </select>
       </label>
-      {/* <label>
+      <label>
         <span className="text-sm font-semibold text-gray-600">
           Sub categoría
         </span>
-        <select
-          {...register("subcategory", { required: true })}
-          disabled={!category}
-        >
-          <option value=""></option>
-          {category &&
-            subcategories[category]?.map((subcategory) => (
-              <option key={subcategory} value={subcategory}>
-                {camelCaseToTitleCase(subcategory)}
-              </option>
-            ))}
+        <select {...register("subcategory")} disabled={!category} required>
+          <option value={subcategories[category]?.includes(subcategory)? subcategory: ""}>
+            {camelCaseToTitleCase(subcategory)}
+          </option>
+          {subcategories[category]?.map((subcategory) => (
+            <option key={subcategory} value={subcategory}>
+              {camelCaseToTitleCase(subcategory)}
+            </option>
+          ))}
         </select>
-      </label> */}
+      </label>
       <Controller
         control={control}
         name="tags"

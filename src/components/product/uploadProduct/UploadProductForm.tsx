@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { useForm, FormProvider, Controller } from "react-hook-form";
-import "../forms-styles.css";
+import { useForm, FormProvider } from "react-hook-form";
+import "../../forms-styles.css";
 import { Product, UploadProduct, uploadProductSchema } from "@/model/products";
 import BarcodeInputs from "./BarcodeInputs";
 import ImageInput from "./ImageInput";
@@ -10,8 +10,6 @@ import BrandInput from "./BrandInput";
 import CategorySelector from "./CategorySelector";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { uploadProduct } from "@/lib/mongo/products";
-import TagsInput from "./TagsInput";
-import { DevTool } from "@hookform/devtools";
 
 
 const UploadProductForm = () => {
@@ -59,7 +57,7 @@ const UploadProductForm = () => {
     default:
       return (
         <>
-          <form onSubmit={handleUploadProduct } id="uploadProductForm">
+          <form onSubmit={handleUploadProduct } className="form">
             <FormProvider {...form}>
                 <BarcodeInputs />
                 <ImageInput />

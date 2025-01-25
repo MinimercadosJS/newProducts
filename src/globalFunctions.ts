@@ -7,13 +7,19 @@ export function toKebabCase(input: string): string {
     .replace(/([a-z])([A-Z])/g, '$1-$2') // Separa palabras cuando hay un cambio de mayúsculas a minúsculas
     .replace(/[\s_]+/g, '-') // Reemplaza espacios y guiones bajos por guiones
     .toLowerCase()
-    : 
+    :
     "none" // Convierte todo a minúsculas
 }
 export function kebabToLowerCase(input: string): string {
   return input.replace(/-/g, ' ').toLowerCase();
 }
 
+export function verifyTitleCase(input: string): boolean {
+  const upper = /^[A-Z0-9ÁÉÍÓÚÑÜ\s]*$/;
+  const lower = /^[a-z0-9áéíóúñü\s]*$/;
+  return !(upper.test(input) || lower.test(input));
+
+}
 export function camelCaseToTitleCase(camelCaseString: string) {
   return camelCaseString
     .replace(/([a-z])([A-Z])/g, '$1 $2')

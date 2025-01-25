@@ -1,5 +1,4 @@
-import { getProductByBarcode, nextProductToCheck } from "@/lib/mongo/products";
-import React from "react";
+import { getProductByBarcode } from "@/lib/mongo/products";
 import { Product } from "@/model/products";
 import EditProductForm from "@/components/product/editProduct/EditProductForm";
 
@@ -14,7 +13,6 @@ const updateProductByBarcode = async ({
   }
 
   const product = getProduct as Product;
-  const next = await nextProductToCheck(params.barcode);
 
   return (
       <EditProductForm product={product} />

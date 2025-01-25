@@ -34,6 +34,15 @@ export async function uploadProduct(product: Product) {
         throw new Error(error.message)
     }
 }
+export async function getAllProducts(page: number) {
+    const limit = 100
+    try {
+        await init();
+        return await products.find({}).project({_id: 0}).sort({category: 1, subcategory: 1, brand: 1, measure: 1}).limit(limit).skip(page * limit).toArray()
+    } catch (error: any) {
+        throw new Error(error.message)
+    }
+}
 
 export async function getProductsWithTag(tag: string) {
     try {
@@ -74,7 +83,7 @@ export async function getNotCheckedProducts() {
 export async function nextProductToCheck(current: string) {
     try {
         await init()
-        return await products.findOne({ $and: [{ barcode: { $ne: current } }, { image: "no-image" }] })
+        return await products.findOne({ $and: [{ barcode: { $ne: current } }, { image: "no-image" }] }, {projection: {_id: 0}})
 
     } catch (error: any) {
         throw new Error(error.message)

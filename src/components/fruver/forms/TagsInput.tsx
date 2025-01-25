@@ -1,18 +1,15 @@
-import { subcategories, tags } from "@/globalConsts";
-import { Category } from "@/model/products";
 import { KeyboardEventHandler } from "react";
 import { MdCancel } from "react-icons/md";
 
 interface Props {
-  value: string[];
+  value?: string[];
   name: string;
   onChange: (value: string[]) => void;
   onBlur?: () => void;
-  category: Category;
   disabled?: boolean;
 }
 
-const TagsInput = ({ value = [], category = "otra", onChange }: Props) => {
+const TagsInput = ({ value = [],  onChange }: Props) => {
   const handleClickEnter: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key != "Enter") return;
     e.preventDefault();
@@ -43,18 +40,7 @@ const TagsInput = ({ value = [], category = "otra", onChange }: Props) => {
         {value.map((tag, index) => (
           <Tag title={tag} key={index} index={index} remove={handleRemove} />
         ))}
-        <datalist id="tags">
-          {tags.map((tag, index) => (
-            <option key={index} value={tag}>
-              {tag}
-            </option>
-          ))}
-          {subcategories[category]?.map((tag) => (
-            <option key={tag} value={tag}>
-              {tag}
-            </option>
-          ))}
-        </datalist>
+
       </div>
     </div>
   );

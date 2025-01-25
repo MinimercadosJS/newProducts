@@ -1,9 +1,6 @@
 import { brands, categories } from '@/globalConsts';
 import { z } from 'zod'
 
-
-
-
 export type Brand = typeof brands[number];
 
 export type Category = typeof categories[number];
