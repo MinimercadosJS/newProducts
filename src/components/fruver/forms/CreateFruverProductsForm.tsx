@@ -23,7 +23,7 @@ const CreateFruverProductForm = () => {
     resolver: zodResolver(fruverProductSchema),
   });
   const [nameSet, setNameSet] = useState(false);
-  const { formState, handleSubmit, getValues, register, setValue } = form;
+  const { formState, handleSubmit, getValues, register, setValue, reset } = form;
 
   const handleSubmitProduct = async () => {
     setFormStatus("submitting");
@@ -31,6 +31,7 @@ const CreateFruverProductForm = () => {
     const result = await uploadProduct(updatedProduct);
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
+    reset();
     router.refresh();
   };
 
