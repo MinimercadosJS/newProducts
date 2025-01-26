@@ -1,3 +1,6 @@
+import { fruverTags, subcategories, tags } from "@/globalConsts";
+import { FruverCategory } from "@/model/fruverProducts";
+import { Category } from "@/model/products";
 import { KeyboardEventHandler } from "react";
 import { MdCancel } from "react-icons/md";
 
@@ -6,10 +9,11 @@ interface Props {
   name: string;
   onChange: (value: string[]) => void;
   onBlur?: () => void;
+  category: FruverCategory;
   disabled?: boolean;
 }
 
-const TagsInput = ({ value = [],  onChange }: Props) => {
+const TagsInput = ({ value = [], category = "otros", onChange }: Props) => {
   const handleClickEnter: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key != "Enter") return;
     e.preventDefault();
@@ -40,7 +44,13 @@ const TagsInput = ({ value = [],  onChange }: Props) => {
         {value.map((tag, index) => (
           <Tag title={tag} key={index} index={index} remove={handleRemove} />
         ))}
-
+        <datalist id="tags">
+          {fruverTags[category]?.map((tag) => (
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
+          ))}
+        </datalist>
       </div>
     </div>
   );

@@ -175,22 +175,56 @@ const subcategories: { [K in Category]: readonly string[]; } = {
   ] as const
 };
 
-const fruverCategories = ["frutas", "verduras y hortalizas", "hierbas aromáticas y especias", "legumbres", "frutos secos y semillas", "otros"] as const;
+const fruverCategories = ["frutas", "verduras", "hortalizas", "aromáticas y especias", "legumbres", "frutos secos y semillas", "procesados y derivados", "otros"] as const;
 
-const fruverSubcategories: { [K in FruverCategory]?: readonly string[] } = {
+const fruverTags: { [K in FruverCategory]?: readonly string[] } = {
   "frutas": [
-    "tropicales",
-    "cítricas",
-    "de estación",
-    "exóticas",
-    "otras"
+    "tropicales",         
+    "cítricas",          
+    "de estación",       
+    "exóticas",        
+    "de hueso",           
+    "de pepita",          
+    "de bosque",          
   ],
-  "verduras y hortalizas": [
-    "verduras de hoja",
-    "raíces y tubérculos",
-    "hortalizas de fruto",
-    "crucíferas"
+  "verduras": [
+    "de hoja verde",     
+    "tubérculos",         
+    "crucíferas",       
+    "de fruto",          
+    "de flor",            
+    "bulbos",             
+    "raíz comestible",     
+  ],
+  "hortalizas": [
+    "frescas",          
+    "cocidas o asadas",   
+    "rellenables",         
+  ],
+  "aromáticas y especias": [
+    "aromáticas frescas",  
+    "especias secas",      
+    "mezclas o infusiones" 
+  ],
+  "legumbres": [
+    "secas",             
+    "frescas",             
+    "procesadas",          
+  ],
+  "frutos secos y semillas": [
+    "frutos secos",        
+    "semillas",            
+    "aceites y derivados", 
+  ],
+  "procesados y derivados": [
+    "jugos naturales",    
+    "mermeladas",         
+    "frutas deshidratadas",
+    "pulpas congeladas"
+  ],
+  "otros": [
+    ""
   ]
-}
+};
 
-export { tags, brands, subcategories, categories, fruverCategories, fruverSubcategories }
+export { tags, brands, subcategories, categories, fruverCategories, fruverTags }

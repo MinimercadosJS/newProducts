@@ -31,8 +31,9 @@ const CreateFruverProductForm = () => {
     const result = await uploadProduct(updatedProduct);
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
-    reset();
-    router.refresh();
+    reset(); 
+    alert("Producto creado con éxito!");
+    return;
   };
 
   return (
