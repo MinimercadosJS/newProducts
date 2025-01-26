@@ -1,8 +1,4 @@
-import {
-  ChangeEventHandler,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEventHandler, useRef, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { uploadImage } from "@/lib/cloudinary/actions";
@@ -31,7 +27,8 @@ const ImageInput = ({ disabled }: { disabled: boolean }) => {
 
     const cloudinaryData: any = await uploadImage(
       formData,
-      toKebabCase(getValues("name").toString())
+      getValues("id"),
+      "minimarket/fruver"
     );
 
     if (!cloudinaryData.public_id) return;

@@ -182,7 +182,8 @@ const fruverSubcategories: { [K in FruverCategory]?: readonly string[] } = {
     "tropicales",
     "cítricas",
     "de estación",
-    "exóticas"
+    "exóticas",
+    "otras"
   ],
   "verduras y hortalizas": [
     "verduras de hoja",

@@ -9,14 +9,14 @@ cloudinary.config({
     secure: true
 });
 
-export async function uploadImage(formData: FormData, name: string) {
+export async function uploadImage(formData: FormData, name: string, folder: string = "minimarket") {
 
     const image = formData.get('NewProductReportImage') as File;
     const arrayBuffer = await image.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
-    
+
     const cloudinaryResponse = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload_stream({ folder: "minimarket", public_id: name, invalidate: true, overwrite: true }, function (error, result) {
+        cloudinary.uploader.upload_stream({ folder, public_id: name, invalidate: true, overwrite: true }, function (error, result) {
             if (error) {
                 reject(error); console.log(error.message);
                 ; throw new Error(error.message);
@@ -32,7 +32,7 @@ export async function uploadImage(formData: FormData, name: string) {
 export const destroyImage = async (public_id: string) => {
 
     const cloudinaryResponse = await new Promise((resolve, reject) => {
-        cloudinary.uploader.destroy(public_id,{invalidate: true}, function (error, result) {
+        cloudinary.uploader.destroy(public_id, { invalidate: true }, function (error, result) {
             if (error) {
                 reject(error); console.log(error.message);
                 ; throw new Error(error.message);

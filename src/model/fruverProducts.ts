@@ -8,9 +8,10 @@ export interface FruverProduct {
     name: string;
     image: string;
     category: FruverCategory;
-    subcategory?: string; 
+    subcategory?: string;
     tags?: string[];
-} 
+    checked?: boolean;
+}
 
 const fruverProductSchema = z.object({
     id: z.string(),
