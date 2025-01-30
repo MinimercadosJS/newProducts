@@ -109,9 +109,7 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'galletas',
     'snacks',
     'dulces',
-    'repostería',
-    'mani y nueces',
-    'bocadillos típicos',
+    'ponqués',
     'otros'
   ] as const,
 
@@ -157,20 +155,14 @@ const subcategories: { [K in Category]: readonly string[]; } = {
 
   "otra": [
     'tecnología',
-    //   'libros', 
     'papelería',
     'farmacia',
-    //   'juguetes', 
     'decoración',
     'iluminación',
-    //   'ropa y accesorios', 
-    //   'calzado', 
-    //   'muebles', 
     'herramientas',
-    // 'jardinería', 
-    // 'electrodomésticos', 
     'desechables',
     'deportes',
+    'repostería',
     'otros'
   ] as const
 };
