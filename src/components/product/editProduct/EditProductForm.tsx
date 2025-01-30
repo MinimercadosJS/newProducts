@@ -36,7 +36,7 @@ const EditProductForm = ({ product }: { product: Product }) => {
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
   
-    router.push(`/edit-product/${next?.barcode}`)
+    router.back()
   };
 
   return (
