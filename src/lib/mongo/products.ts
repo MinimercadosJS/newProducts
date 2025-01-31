@@ -116,7 +116,7 @@ export async function editProduct(updatedProduct: Product) {
 
     try {
         await init()
-        const result = await products.updateOne({ barcode: barcode }, { $set: updatedProduct })
+        const result = await products.updateOne({ barcode: barcode }, { $set: {...updatedProduct, checkedByDani: true} })
         return result
     } catch (error: any) {
         throw new Error(error.message)
