@@ -58,16 +58,16 @@ const categories = ["canasta familiar", "higiene personal", "mecato", "licor", "
 
 const subcategories: { [K in Category]: readonly string[]; } = {
   "canasta familiar": [
-    'parva',
-    'arepas',
+    'parva', 
+    'arepas', // revisar
     'granos',
     'lácteos',
     'enlatados',
     'aceites',
     'esparcibles',
-    'condimentos',
-    'café',
-    'chocolates',
+    'LAN',
+    'café', //revisar
+    'chocolates', //revisar
     'pulverizados',
     'otros'
   ] as const,
