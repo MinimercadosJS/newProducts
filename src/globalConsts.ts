@@ -139,6 +139,7 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'batidos y malteadas',
     'energéticas',
     'hidratantes',
+    'lácteas',
     'otros'
   ] as const,
 
