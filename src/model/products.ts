@@ -18,6 +18,7 @@ export interface Product {
   subcategory: string;
   tags: string[];
   checked?: boolean;
+  checkedBy?: string// Asume que checkedBy puede ser undefined o un string, no vacío
 }
 
 
@@ -32,6 +33,7 @@ export const productSchema = z.object({
   subcategory: z.string().min(1, 'La subcategoría es obligatoria'), // Rechaza valores vacíos
   tags: z.array(z.string().min(1, 'Cada tag debe ser no vacío')).optional(), // Rechaza array vacío
   checked: z.boolean(), // Asume que checked será verdadero o falso, no vacío
+  checkedBy: z.string().optional()
 });
 
 // Si quieres omitir el campo 'checked' en otro esquema

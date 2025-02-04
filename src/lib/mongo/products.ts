@@ -3,6 +3,7 @@ import { Product } from "@/model/products";
 import { Collection, Db, MongoClient } from "mongodb";
 import clientPromise from ".";
 import { revalidatePath } from "next/cache";
+import { trimObject } from "@/globalFunctions";
 
 let client: MongoClient;
 let db: Db;
@@ -27,7 +28,7 @@ export async function uploadProduct(product: Product) {
     try {
         await init();
         const searchString = `${product.name} ${product.measure} - ${product.brand}`.toLowerCase()
-        const res = await products.insertOne({ ...product, searchString, checked: false });
+        const res = await products.insertOne(trimObject({ ...product, searchString, checked: false }));
         revalidatePath('/')
         return res
     } catch (error: any) {
@@ -47,7 +48,7 @@ export async function getAllProducts(page: number) {
 export async function filterProducts(searchParams: Partial<Product>) {
     try {
         await init();
-        return await products.find({ $or: [searchParams ,{tags: searchParams.subcategory}] }).project({ _id: 0 }).sort({ category: 1, subcategory: 1, name: 1, brand: 1, measure: 1 }).toArray()
+        return await products.find({ $or: [searchParams, { tags: searchParams.subcategory }] }).project({ _id: 0 }).sort({ category: 1, subcategory: 1, name: 1, brand: 1, measure: 1 }).toArray()
     } catch (error: any) {
         throw new Error(error.message)
     }
@@ -116,7 +117,7 @@ export async function editProduct(updatedProduct: Product) {
 
     try {
         await init()
-        const result = await products.updateOne({ barcode: barcode }, { $set: {...updatedProduct, checkedByDani: true} })
+        const result = await products.updateOne({ barcode: barcode }, { $set: trimObject({ ...updatedProduct }) })
         return result
     } catch (error: any) {
         throw new Error(error.message)

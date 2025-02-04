@@ -65,7 +65,6 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'enlatados',
     'aceites',
     'esparcibles',
-    'LAN',
     'café', //revisar
     'chocolates', //revisar
     'pulverizados',
