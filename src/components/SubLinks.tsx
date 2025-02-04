@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const SubLinks = () => {
+const SubLinks = ({user}:{user: string}) => {
   const router = useRouter();
 
   const handleLink = (sub: string) => {
-    router.replace(`/?subcategory=${sub}`);
+    router.replace(`/?subcategory=${sub}&user=${user}`);
   };
 
   return (

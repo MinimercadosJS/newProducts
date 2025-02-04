@@ -6,13 +6,13 @@ import Input from "./Input";
 import BrandInput from "./BrandInput";
 import CategorySelector from "./CategorySelector";
 import ImageInput from "./ImageInput";
-// import { DevTool } from "@hookform/devtools";
 import { useState } from "react";
 import { Product, productSchema } from "@/model/products";
 import { editProduct, nextProductToCheck } from "@/lib/mongo/products";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const EditProductForm = ({ product }: { product: Product }) => {
+const EditProductForm =  ({ product }: { product: Product }) => {
+
   const [formStatus, setFormStatus] = useState<
     "idle" | "submitting" | "submitted" | "failed"
   >("idle");
@@ -27,16 +27,19 @@ const EditProductForm = ({ product }: { product: Product }) => {
   } = form;
   const router = useRouter();
 
+  const searchParams = useSearchParams()
+  const user = searchParams.get('user')
+
   const handleEditProduct = async () => {
     const next = await nextProductToCheck(product.barcode);
 
     setFormStatus("submitting");
     const updatedProduct = getValues();
-    const result = await editProduct(updatedProduct);
+    const result = await editProduct({...updatedProduct, checkedBy: user || "none"});
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
-  
-    router.back()
+
+    router.back();
   };
 
   return (

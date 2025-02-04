@@ -1,8 +1,9 @@
 import EditProductForm from "@/components/product/editProduct/EditProductForm";
 import { getProductByBarcode } from "@/lib/mongo/products";
-import React from "react";
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+ 
+const ProductPage = async ({ params, searchParams }: { params: { barcode: string }, searchParams: SearchParams }) => {
 
-const ProductPage = async ({ params }: { params: { barcode: string } }) => {
   const { barcode } = params;
   const product = await getProductByBarcode(barcode);
 

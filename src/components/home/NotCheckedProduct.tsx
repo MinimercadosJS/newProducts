@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { verifyTitleCase } from "@/globalFunctions";
 
 const NotCheckedProduct = ({ product }: { product: Product }) => {
-  const { name, barcode, image, searchString, category, subcategory, brand } =
+  const { name, barcode, image, searchString, category, subcategory, brand , checkedBy} =
     product;
 
   const validCategory = categories.includes(category);
@@ -36,7 +36,7 @@ const NotCheckedProduct = ({ product }: { product: Product }) => {
       </div>
       <ProductImage src={image} alt={searchString} />
       <p className={clsx([!validName && "text-red-500", "text-lg"])}>{name}</p>
-      <Link href={`/${barcode}`}> ir a editar</Link>
+      <Link href={`/${barcode}?user=${checkedBy}`}> ir a editar</Link>
     </li>
   );
 };
