@@ -1,5 +1,5 @@
-import { FruverCategory } from "./model/fruverProducts";
-import { Category } from "./model/products";
+import { Category } from "@/model/products/barcode";
+import { FruverCategory } from "@/model/products/fruver";
 
 const tags = [
   "lonchera",
@@ -54,19 +54,19 @@ const brands = [
   "Maggi"
 ] as const;
 
-const categories = ["canasta familiar", "higiene personal", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutas y verduras", "mascotas", "otra"] as const;
+const categories = ["alimentos básicos", "cuidado e higiene", "mecato", "licor", "aseo", "bebidas", "cárnicos", "frutas y verduras", "mascotas", "otra"] as const;
 
 const subcategories: { [K in Category]: readonly string[]; } = {
-  "canasta familiar": [
-    'parva', 
-    'arepas', // revisar
+  "alimentos básicos": [
+    'parva',
+    'arepas',
     'granos',
     'lácteos',
     'enlatados',
-    'aceites',
-    'esparcibles',
-    'café', //revisar
-    'chocolates', //revisar
+    'harinas y cereales',
+    'aceites y untables',
+    'condimentos',
+    'café y chocolate',
     'pulverizados',
     'otros'
   ] as const,
@@ -86,7 +86,7 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'refrigeradas',
     'otros'
   ],
-  "higiene personal": [
+  "cuidado e higiene": [
     'crema dental',
     'jabón',
     'shampoo y acondicionador',
@@ -101,6 +101,7 @@ const subcategories: { [K in Category]: readonly string[]; } = {
   ] as const,
 
   "mecato": [
+    'lonchera',
     'paquetes',
     'helados',
     'gomitas',
@@ -108,7 +109,7 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'galletas',
     'snacks',
     'dulces',
-    'ponqués',
+    'ponqués', 
     'otros'
   ] as const,
 
@@ -129,16 +130,15 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'utensilios de limpieza', // Incluye trapeadores, escobas, recogedores, guantes, esponjas
     'ambientadores',
     'bolsas de basura',
-    'aseo para mascotas', // Incluye champús, cepillos, productos antipulgas
     'otros'
   ] as const,
 
   "bebidas": [
     'gaseosas',
     'jugos',
-    'batidos y malteadas',
     'energéticas',
     'hidratantes',
+    'refrescos instantáneos',
     'lácteas',
     'otros'
   ] as const,
@@ -147,9 +147,8 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'juguetes',
     'alimento',
     'accesorios',
-    'camas y transportadoras',
-    'comedores y bebederos',
-    'ropa para mascotas',
+    'ropa',
+    'higiene y cuidado',
     'otros'
   ] as const,
 

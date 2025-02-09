@@ -8,14 +8,14 @@ import {
 } from "react";
 import Input from "./Input";
 import Link from "next/link";
-import { getProductByBarcode } from "@/lib/mongo/products";
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
+import { getProductByBarcode } from "@/lib/mongo/products/barcode";
 
 const BarcodeInputs = () => {
   const [disabled, setDisabled] = useState(false)
   const dialog = useRef<HTMLDialogElement>(null);
   const { trigger, getValues, setError } =
-    useFormContext<Product>();
+    useFormContext<BarcodeProduct>();
 
   const confirmBarcode = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" || e.key === "Enter") {

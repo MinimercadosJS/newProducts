@@ -1,10 +1,10 @@
 "use client";
-import { camelCaseToTitleCase } from "@/globalFunctions";
+import { camelCaseToTitleCase } from "@/utils/functions";
 import { Controller, useFormContext } from "react-hook-form";
-import { fruverCategories } from "@/globalConsts";
+import { fruverCategories } from "@/utils/consts";
 import { useState } from "react";
-import { FruverCategory, FruverProduct } from "@/model/fruverProducts";
 import TagsInput from "./TagsInput";
+import { FruverCategory, FruverProduct } from "@/model/products/fruver";
 
 const CategorySelector = () => {
   const [category, setCategory] = useState<FruverCategory>("otros");

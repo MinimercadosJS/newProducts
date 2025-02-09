@@ -1,9 +1,8 @@
 'use server'
 import { Collection, Db, MongoClient } from "mongodb";
-import clientPromise from ".";
+import clientPromise from "../index";
 import { revalidatePath } from "next/cache";
-import { FruverProduct } from "@/model/fruverProducts";
-
+import { FruverProduct } from "@/model/products/fruver";
 let client: MongoClient;
 let db: Db;
 let fruver_products: Collection<FruverProduct>;
@@ -19,11 +18,12 @@ export async function init() {
     }
 }
 ;
+
 (async () => {
     await init()
 })
 
-export async function uploadProduct(product: FruverProduct) {
+export async function uploadFruverProduct(product: FruverProduct) {
     try {
         await init();
         const res = await fruver_products.insertOne({ ...product, checked: false });

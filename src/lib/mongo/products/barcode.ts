@@ -1,13 +1,13 @@
 'use server'
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
 import { Collection, Db, MongoClient } from "mongodb";
-import clientPromise from ".";
+import clientPromise from "../index";
 import { revalidatePath } from "next/cache";
-import { trimObject } from "@/globalFunctions";
+import { trimObject } from "@/utils/functions";
 
 let client: MongoClient;
 let db: Db;
-let products: Collection<Product>;
+let products: Collection<BarcodeProduct>;
 
 export async function init() {
     if (db) return
@@ -24,10 +24,10 @@ export async function init() {
     await init()
 })
 
-export async function uploadProduct(product: Product) {
+export async function uploadBarcodeProduct(product: BarcodeProduct) {
     try {
         await init();
-        const searchString = `${product.name} ${product.measure} - ${product.brand}`.toLowerCase()
+        const searchString = `${product.name} ${product.brand} ${product.measure} `.toLowerCase()
         const res = await products.insertOne(trimObject({ ...product, searchString, checked: false }));
         revalidatePath('/')
         return res
@@ -35,17 +35,18 @@ export async function uploadProduct(product: Product) {
         throw new Error(error.message)
     }
 }
-export async function getAllProducts(page: number) {
+
+export async function getAllBarcodeProducts(page: number) {
     const limit = 100
     try {
         await init();
-        return await products.find({}).project({ _id: 0 }).sort({ category: 1, subcategory: 1, brand: 1, measure: 1 }).limit(limit).skip(page * limit).toArray()
+        return await products.find({}).project({ _id: 0 }).sort({ category: 1, subcategory: 1, name:1, brand: 1, measure: 1 }).limit(limit).skip(page * limit).toArray()
     } catch (error: any) {
         throw new Error(error.message)
     }
 }
 
-export async function filterProducts(searchParams: Partial<Product>) {
+export async function filterProducts(searchParams: Partial<BarcodeProduct>) {
     try {
         await init();
         return await products.find({ $or: [searchParams, { tags: searchParams.subcategory }] }).project({ _id: 0 }).sort({ category: 1, subcategory: 1, name: 1, brand: 1, measure: 1 }).toArray()
@@ -112,7 +113,7 @@ export async function getProductByBarcode(barcode: string) {
     }
 }
 
-export async function editProduct(updatedProduct: Product) {
+export async function editBarcodeProduct(updatedProduct: BarcodeProduct) {
     const { barcode } = updatedProduct
 
     try {

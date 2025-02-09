@@ -1,11 +1,11 @@
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
 import Link from "next/link";
 import ProductImage from "../product/ProductImage";
-import { categories, subcategories } from "@/globalConsts";
+import { categories, subcategories } from "@/utils/consts";
 import clsx from "clsx";
-import { verifyTitleCase } from "@/globalFunctions";
+import { verifyTitleCase } from "@/utils/functions";
 
-const NotCheckedProduct = ({ product }: { product: Product }) => {
+const NotCheckedProduct = ({ product }: { product: BarcodeProduct }) => {
   const { name, barcode, image, searchString, category, subcategory, brand , checkedBy} =
     product;
 

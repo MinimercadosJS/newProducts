@@ -1,13 +1,13 @@
 "use client";
 import { Controller, useFormContext } from "react-hook-form";
-import { Category, Product } from "@/model/products";
-import { camelCaseToTitleCase } from "@/globalFunctions";
+import { camelCaseToTitleCase } from "@/utils/functions";
 import { useEffect, useState } from "react";
 import TagsInput from "../uploadProduct/TagsInput";
-import { categories, subcategories } from "@/globalConsts";
+import { categories, subcategories } from "@/utils/consts";
+import { BarcodeProduct, Category } from "@/model/products/barcode";
 
 const CategorySelector = () => {
-  const { register, getValues, control, watch } = useFormContext<Product>();
+  const { register, getValues, control, watch } = useFormContext<BarcodeProduct>();
   const [category, setCategory] = useState<Category>("otra");
   const subcategory = watch("subcategory");
   useEffect(() => {

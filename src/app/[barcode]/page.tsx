@@ -1,5 +1,5 @@
 import EditProductForm from "@/components/product/editProduct/EditProductForm";
-import { getProductByBarcode } from "@/lib/mongo/products";
+import { getProductByBarcode } from "@/lib/mongo/products/barcode";
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
  
 const ProductPage = async ({ params, searchParams }: { params: { barcode: string }, searchParams: SearchParams }) => {

@@ -1,5 +1,5 @@
-import { brands, categories } from "@/globalConsts";
-import { uploadProduct } from "@/lib/mongo/products";
+import { uploadBarcodeProduct } from "@/lib/mongo/products/barcode";
+import { brands , categories} from "@/utils/consts";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from 'zod'
 
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     if (!validBody.success) return NextResponse.json(validBody.error.formErrors, { status: 400 })
 
-    const mongoresponse = await uploadProduct(body)
+    const mongoresponse = await uploadBarcodeProduct(body)
 
     if (!mongoresponse || !mongoresponse.acknowledged) return NextResponse.json({ error: mongoresponse }, { status: 500 })
 

@@ -1,4 +1,4 @@
-import { fruverCategories } from "@/globalConsts";
+import { fruverCategories } from "@/utils/consts";
 import { z } from "zod";
 
 export type FruverCategory = typeof fruverCategories[number];

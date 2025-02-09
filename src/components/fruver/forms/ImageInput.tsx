@@ -4,8 +4,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { uploadImage } from "@/lib/cloudinary/actions";
 import { CldImage } from "next-cloudinary";
 import { LuLoader } from "react-icons/lu";
-import { FruverProduct } from "@/model/fruverProducts";
-import { toKebabCase } from "@/globalFunctions";
+import { FruverProduct } from "@/model/products/fruver";
 
 const ImageInput = ({ disabled }: { disabled: boolean }) => {
   const { register, getValues, setValue } = useFormContext<FruverProduct>();

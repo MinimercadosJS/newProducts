@@ -1,5 +1,5 @@
 "use client"
-import { categories, subcategories } from "@/globalConsts";
+import { categories, subcategories } from "@/utils/consts";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";

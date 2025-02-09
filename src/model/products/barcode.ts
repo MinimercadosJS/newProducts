@@ -1,4 +1,4 @@
-import { brands, categories } from '@/globalConsts';
+import { brands, categories } from '@/utils/consts';
 import { z } from 'zod'
 
 export type Brand = typeof brands[number];
@@ -6,7 +6,7 @@ export type Brand = typeof brands[number];
 export type Category = typeof categories[number];
 
 
-export interface Product {
+export interface BarcodeProduct {
   barcode: string;
   name: string;
   measure: string;
@@ -22,7 +22,7 @@ export interface Product {
 }
 
 
-export const productSchema = z.object({
+export const barcodeProductSchema = z.object({
   barcode: z.string().min(1, 'El código de barras es obligatorio'), // Rechaza valores vacíos
   name: z.string().min(1, 'El nombre es obligatorio'), // Rechaza valores vacíos
   measure: z.string().min(1, 'La medida es obligatoria'), // Rechaza valores vacíos
@@ -36,7 +36,23 @@ export const productSchema = z.object({
   checkedBy: z.string().optional()
 });
 
+export const newProductFromTenantSchema = z.object({
+  barcode: z.string().min(1, 'El código de barras es obligatorio'), // Rechaza valores vacíos
+  name: z.string().min(1, 'El nombre es obligatorio'), // Rechaza valores vacíos
+  brand: z.string().min(1, 'La marca es obligatoria'), // Rechaza valores vacíos
+  measure: z.string().min(1, 'La medida es obligatoria'), // Rechaza valores vacíos
+});
+
+export type NewProduct = {
+  barcode: string;
+  name: string;
+  brand: string;
+  measure: string;
+  tenantID: string[];
+}
+
+export type NewProductFromTenant = z.infer<typeof newProductFromTenantSchema>;
 // Si quieres omitir el campo 'checked' en otro esquema
 
-export const uploadProductSchema = productSchema.omit({ checked: true })
-export type UploadProduct = z.infer<typeof uploadProductSchema>
+export const uploadBarcodeProductSchema = barcodeProductSchema.omit({ checked: true })
+export type UploadBarcodeProduct = z.infer<typeof uploadBarcodeProductSchema>

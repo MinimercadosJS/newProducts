@@ -1,6 +1,5 @@
-import { fruverTags, subcategories, tags } from "@/globalConsts";
-import { FruverCategory } from "@/model/fruverProducts";
-import { Category } from "@/model/products";
+import { fruverTags } from "@/utils/consts";
+import { FruverCategory } from "@/model/products/fruver";
 import { KeyboardEventHandler } from "react";
 import { MdCancel } from "react-icons/md";
 

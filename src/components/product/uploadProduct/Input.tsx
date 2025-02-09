@@ -1,10 +1,10 @@
 import { useFormContext } from "react-hook-form";
 import { InputHTMLAttributes, KeyboardEventHandler } from "react";
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
 import clsx from "clsx";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: keyof Product;
+  name: keyof BarcodeProduct;
   label: string;
 }
 
@@ -21,7 +21,7 @@ const Input = ({
     formState: { errors },
     getFieldState,
     trigger,
-  } = useFormContext<Product>();
+  } = useFormContext<BarcodeProduct>();
 
   // Estado de validación del campo
   const fieldState = getFieldState(name);

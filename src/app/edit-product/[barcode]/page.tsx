@@ -1,6 +1,6 @@
-import { getProductByBarcode } from "@/lib/mongo/products";
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
 import EditProductForm from "@/components/product/editProduct/EditProductForm";
+import { getProductByBarcode } from "@/lib/mongo/products/barcode";
 
 const updateProductByBarcode = async ({
   params,
@@ -9,10 +9,10 @@ const updateProductByBarcode = async ({
 }) => {
   const getProduct = await getProductByBarcode(params.barcode);
   if (!getProduct) {
-    return <div>Product not found.</div>;
+    return <div>BarcodeProduct not found.</div>;
   }
 
-  const product = getProduct as Product;
+  const product = getProduct as BarcodeProduct;
 
   return (
       <EditProductForm product={product} />

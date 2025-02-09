@@ -4,10 +4,10 @@ import { CldImage } from "next-cloudinary";
 import { LuLoader } from "react-icons/lu";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { uploadImage } from "@/lib/cloudinary/actions";
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
 
 const ImageInput = () => {
-  const { register, getValues, setValue } = useFormContext<Product>();
+  const { register, getValues, setValue } = useFormContext<BarcodeProduct>();
 
   const [imageState, setImageState] = useState<"loading" | "loaded" | "failed">(
     "loaded",

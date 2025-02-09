@@ -1,15 +1,15 @@
 import clsx from "clsx";
-import { Product } from "@/model/products";
+import { BarcodeProduct } from "@/model/products/barcode";
 import { InputHTMLAttributes, KeyboardEventHandler } from "react";
 import { useFormContext } from "react-hook-form";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    name: keyof Product;
+    name: keyof BarcodeProduct;
     label: string;
 }
 
 const Input = ({ name, label, hidden, type = "text", ...props }: InputProps) => {
-    const { register, formState: { errors }, getFieldState, trigger } = useFormContext<Product>();
+    const { register, formState: { errors }, getFieldState, trigger } = useFormContext<BarcodeProduct>();
     const { isDirty, invalid } = getFieldState(name);
     const valid = isDirty && !invalid;
     

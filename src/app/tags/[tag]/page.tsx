@@ -1,5 +1,5 @@
-import { kebabToLowerCase } from "@/globalFunctions";
-import { getProductsWithTag } from "@/lib/mongo/products";
+import { kebabToLowerCase } from "@/utils/functions";
+import { getProductsWithTag } from "@/lib/mongo/products/barcode";
 
 const TagPage = async ({ params }: { params: Promise<{ tag: string }> }) => {
   const { tag } = await params;
@@ -9,8 +9,6 @@ const TagPage = async ({ params }: { params: Promise<{ tag: string }> }) => {
   return (
     <div>
         <h2>Tag: {decodedTag}</h2>
-
-      
       {tagProducts.map((product, key) => (
         <span key={key}>{product.name}</span>
       ))}

@@ -10,10 +10,10 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { uploadImage } from "@/lib/cloudinary/actions";
 import { CldImage } from "next-cloudinary";
 import { LuLoader } from "react-icons/lu";
-import { UploadProduct } from "@/model/products";
+import { UploadBarcodeProduct } from "@/model/products/barcode";
 
 const ImageInput = () => {
-  const { register, getValues, setValue } = useFormContext<UploadProduct>();
+  const { register, getValues, setValue } = useFormContext<UploadBarcodeProduct>();
   const [imageId, setImageId] = useState<string>("");
   const [withoutImage, setWithoutImage] = useState(false);
 

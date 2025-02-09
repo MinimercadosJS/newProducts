@@ -5,7 +5,7 @@ import {
   KeyboardEventHandler,
 } from "react";
 import clsx from "clsx";
-import { FruverProduct } from "@/model/fruverProducts";
+import { FruverProduct } from "@/model/products/fruver";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: keyof FruverProduct;

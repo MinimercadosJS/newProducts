@@ -1,5 +1,4 @@
 "use client";
-import { FruverProduct, fruverProductSchema } from "@/model/fruverProducts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import Input from "./Input";
@@ -7,10 +6,11 @@ import "../../forms-styles.css";
 import ImageInput from "./ImageInput";
 import { useState } from "react";
 import CategorySelector from "./CategoriesSelector";
-import { uploadProduct } from "@/lib/mongo/fruverProducts";
 import { DevTool } from "@hookform/devtools";
-import { toKebabCase } from "@/globalFunctions";
+import { toKebabCase } from "@/utils/functions";
 import { useRouter } from "next/navigation";
+import { FruverProduct, fruverProductSchema } from "@/model/products/fruver";
+import { uploadFruverProduct } from "@/lib/mongo/products/fruver";
 
 const CreateFruverProductForm = () => {
   const [formStatus, setFormStatus] = useState<
@@ -28,7 +28,7 @@ const CreateFruverProductForm = () => {
   const handleSubmitProduct = async () => {
     setFormStatus("submitting");
     const updatedProduct = getValues();
-    const result = await uploadProduct(updatedProduct);
+    const result = await uploadFruverProduct(updatedProduct);
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
     reset(); 

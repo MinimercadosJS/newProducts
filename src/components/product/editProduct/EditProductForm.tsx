@@ -7,17 +7,17 @@ import BrandInput from "./BrandInput";
 import CategorySelector from "./CategorySelector";
 import ImageInput from "./ImageInput";
 import { useState } from "react";
-import { Product, productSchema } from "@/model/products";
-import { editProduct, nextProductToCheck } from "@/lib/mongo/products";
 import { useRouter, useSearchParams } from "next/navigation";
+import { BarcodeProduct, barcodeProductSchema } from "@/model/products/barcode";
+import {  editBarcodeProduct, nextProductToCheck } from "@/lib/mongo/products/barcode";
 
-const EditProductForm =  ({ product }: { product: Product }) => {
+const EditProductForm =  ({ product }: { product: BarcodeProduct  }) => {
 
   const [formStatus, setFormStatus] = useState<
     "idle" | "submitting" | "submitted" | "failed"
   >("idle");
   const form = useForm({
-    resolver: zodResolver(productSchema),
+    resolver: zodResolver(barcodeProductSchema),
     defaultValues: { ...product },
   });
   const {
@@ -35,7 +35,7 @@ const EditProductForm =  ({ product }: { product: Product }) => {
 
     setFormStatus("submitting");
     const updatedProduct = getValues();
-    const result = await editProduct({...updatedProduct, checkedBy: user || "none"});
+    const result = await editBarcodeProduct({...updatedProduct, checkedBy: user || "none"});
     if (!result) return setFormStatus("failed");
     setFormStatus("submitted");
 

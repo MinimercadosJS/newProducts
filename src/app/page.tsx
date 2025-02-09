@@ -1,24 +1,20 @@
 import NotCheckedProduct from "@/components/home/NotCheckedProduct";
 import SubLinks from "@/components/SubLinks";
-import { categories, subcategories } from "@/globalConsts";
-import { filterProducts } from "@/lib/mongo/products";
-import { Category, Product } from "@/model/products";
-import Link from "next/link";
+import { getAllBarcodeProducts } from "@/lib/mongo/products/barcode";
+import { BarcodeProduct } from "@/model/products/barcode";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  // const noImageProducts = (await getNoImageProducts()) as Product[];
+  // const noImageProducts = (await getNoImageProducts()) as BarcodeProduct[];
   // const tags = await getAllTags();
 
   const page = Number(searchParams.page || 1);
   const subcategory = decodeURIComponent(searchParams.subcategory as string);
   const user = searchParams.user as string;
-  const products = (await filterProducts({
-    subcategory,
-  })) as Product[];
+  const products = (await getAllBarcodeProducts(page)) as BarcodeProduct[];
 
   return (
     <main className="text-center px-5">
