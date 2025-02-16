@@ -115,10 +115,12 @@ export async function getProductByBarcode(barcode: string) {
 
 export async function editBarcodeProduct(updatedProduct: BarcodeProduct) {
     const { barcode } = updatedProduct
+    const searchString = `${updatedProduct.name} ${updatedProduct.brand} ${updatedProduct.measure} `.toLowerCase()
 
+    console.log(updatedProduct)
     try {
         await init()
-        const result = await products.updateOne({ barcode: barcode }, { $set: trimObject({ ...updatedProduct }) })
+        const result = await products.updateOne({ barcode: barcode }, { $set: trimObject({ ...updatedProduct, searchString }) })
         return result
     } catch (error: any) {
         throw new Error(error.message)
