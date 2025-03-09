@@ -72,7 +72,7 @@ const ImageInput = () => {
                   <input
                     type="file"
                     accept='".png, .jpg, .jpeg"'
-                    capture="environment"
+                    // capture="environment"
                     id="barcode"
                     onChange={UploadImage}
                     hidden

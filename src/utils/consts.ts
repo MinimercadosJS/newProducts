@@ -163,7 +163,6 @@ const subcategories: { [K in Category]: readonly string[]; } = {
     'desechables',
     'deportes',
     'repostería',
-    'otros'
   ] as const
 };
 
